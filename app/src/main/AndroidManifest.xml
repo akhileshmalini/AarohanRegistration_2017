@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.amrita.aarohanregistration">
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Main_Menu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ScanActivity"></activity>
+        <activity android:name=".Event_StudentProfile_GroupEvent"></activity>
+        <activity android:name=".Event_StudentScanActivity_GroupEvent"></activity>
+        <activity android:name=".Event_List_Junior"></activity>
+        <activity android:name=".FeedbackStudentProfile"></activity>
+        <activity android:name=".Stats_Home"></activity>
+        <activity android:name=".FeedbackScanActivity"></activity>
+        <activity android:name=".Student_Statistics"></activity>
+        <activity android:name=".Statistics_Event"></activity>
+        <activity android:name=".School_Statistics"></activity>
+        <activity android:name=".Feedback_Statistics"></activity>
+        <activity android:name=".ShowStudent"></activity>
+        <activity android:name=".RandomStudentScanActivity"></activity>
+        <activity android:name=".FacultyProfile"></activity>
+
+        <activity android:name=".Event_StudentList_GroupEvent"
+            android:launchMode="singleTask">
+        </activity>
+
+        <activity android:name=".SchoolStudentList"></activity>
+        <activity android:name=".Event_Dashboard_GroupEvent"></activity>
+
+        <activity android:name=".Event_GroupDashboard"
+            android:launchMode="singleTask">
+        </activity>
+
+        <activity android:name=".Event_ViewGroups"></activity>
+        <activity android:name=".Event_Winnner_GroupEvent"></activity>
+
+
+
+        <activity android:name=".Event_ShowStudent_GroupEvent"
+            android:launchMode= "singleInstance">
+        </activity>
+        <activity android:name=".Event_ShowStudentScanActivity_Group"
+            android:launchMode= "singleInstance" >
+        </activity>
+
+        <activity android:name=".Event_StudentScanActivity_Induvidual"
+            android:launchMode= "singleInstance" >
+        </activity>
+
+        <activity android:name=".Event_StudentList_Induvidual"
+            android:launchMode= "singleInstance" >
+        </activity>
+
+        <activity android:name=".Event_Dashboard_Induvidual"></activity>
+        <activity android:name=".Event_ShowStudent_Induviudal"></activity>
+        <activity android:name=".Event_StudentProfile_Induvidual"></activity>
+        <activity android:name=".Event_Winnner_Induvidual"></activity>
+        <activity android:name=".Event_JuniorSeniorSelect"></activity>
+        <activity android:name=".Event_List_Senior"></activity>
+        <activity android:name=".Winner_EventsList"></activity>
+        <activity android:name=".Wnner_SchoolsList"></activity>
+
+
+    </application>
+
+
+
+</manifest>
