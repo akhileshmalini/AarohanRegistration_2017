@@ -38,9 +38,14 @@ public class Event_Winnner_Induvidual extends AppCompatActivity {
     FirebaseDatabase database;
 
     TextView textView;
-
+    String place;
+    String SchoolName;
     Event_ShowWinnerInduvidualsAdapter mAdapter;
     String EventName;
+    String sampleArhnID;
+    DatabaseReference WinnerRef;
+     ArrayList<Event_Winner_Model> list;
+     String std;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +65,8 @@ public class Event_Winnner_Induvidual extends AppCompatActivity {
 
 
         List<String> spinnerArray =  new ArrayList<String>();
+
+
         spinnerArray.add("1st Place");
         spinnerArray.add("2nd Place");
         spinnerArray.add("3rd Place");
@@ -73,19 +80,14 @@ public class Event_Winnner_Induvidual extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setSelection(0);
-
-        final ArrayList<Event_Winner_Model> list = new ArrayList<>();
-
-        final DatabaseReference WinnerRef = database.getReference("Events").child(EventName).child("Winners");
-
+        list = new ArrayList<>();
+        WinnerRef  = database.getReference("Events").child(EventName).child("Winners");
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 list.clear();
                 for (DataSnapshot event : dataSnapshot.getChildren()) {
-                    list.add(new Event_Winner_Model(event.getValue().toString(),event.getKey().toString()));
-                    mAdapter.notifyDataSetChanged();
-
+                    getSchool(event.getValue().toString(),event.getKey().toString());
                 }
             }
 
@@ -96,51 +98,47 @@ public class Event_Winnner_Induvidual extends AppCompatActivity {
         };
         WinnerRef.addValueEventListener(postListener);
 
-        mAdapter = new Event_ShowWinnerInduvidualsAdapter(list,getApplicationContext(),EventName,database,Event_Winnner_Induvidual.this);
+        mAdapter = new Event_ShowWinnerInduvidualsAdapter(list,getApplicationContext(),EventName,SchoolName,database,Event_Winnner_Induvidual.this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
 
-
-
-
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DatabaseReference EventsRef = database.getReference("Events").child(EventName).child("Students");
-
-                final String std =stdEntry.getText().toString();
-                if(true) {
-                    final String place =spinner.getSelectedItem().toString();
-
-                    EventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            if (dataSnapshot.hasChild(std)){
-
-                                WinnerRef.child(place).setValue(std);
-                                Toast.makeText(getApplicationContext(),"Student "+std+" set to "+place,Toast.LENGTH_SHORT).show();
 
 
-                            }else{
-                                Toast.makeText(getApplicationContext(),"Invalid Group ID",Toast.LENGTH_SHORT).show();
+                std =stdEntry.getText().toString();
+                place =spinner.getSelectedItem().toString();
 
-                            }
+                if(!std.equals("")){
+                    boolean go=true;
+                    String tSch="",tplc="";
+                    for(Event_Winner_Model s : list){
+                        if(s.getPlace().equals(place)) {
+                            go=false;
+                            tSch=s.getSchool();
+                            tplc=s.getPlace();
+                            break;
                         }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                    }
 
-                        }
-                    });
+                    if(go){
+                        isAllowedtoEnter();
+                    }else {
+                        DatabaseReference StdRef = database.getReference("Winners").child(tSch).child(EventName).child(tplc);
+                        StdRef.removeValue();
+                        isAllowedtoEnter();
+                    }
+
                 }else{
-                    Toast.makeText(getApplicationContext(),"Invalid Group ID",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Invalid Aarohan ID",Toast.LENGTH_SHORT).show();
+
                 }
+
             }
         });
 
@@ -152,4 +150,57 @@ public class Event_Winnner_Induvidual extends AppCompatActivity {
 
 
     }
+
+
+    void isAllowedtoEnter(){
+        final DatabaseReference EventsRef = database.getReference("Events").child(EventName).child("Students");
+        EventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.hasChild(std)){
+                    WinnerRef.child(place).setValue(std);
+                    Toast.makeText(getApplicationContext(),"Student "+std+" set to "+place,Toast.LENGTH_SHORT).show();
+                    sampleArhnID=std;
+                }else{
+                    Toast.makeText(getApplicationContext(),"Invalid Aarohan ID",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+
+
+    void getSchool(final String grp, final String Place){
+        DatabaseReference StdRef = database.getReference("Students").child(grp).child("school");
+        StdRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                SchoolName= dataSnapshot.getValue().toString();
+                setWinner(grp,Place);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    void setWinner( String grp, String Place){
+        DatabaseReference StdRef = database.getReference("Winners").child(SchoolName).child(EventName).child(Place);
+        StdRef.setValue(grp);
+        list.add(new Event_Winner_Model(grp,Place,SchoolName));
+        mAdapter.notifyDataSetChanged();
+
+
+
+
+    }
+
+
 }

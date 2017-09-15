@@ -75,6 +75,9 @@
         <activity android:name=".Event_List_Senior"></activity>
         <activity android:name=".Winner_EventsList"></activity>
         <activity android:name=".Wnner_SchoolsList"></activity>
+        <activity android:name=".Winner_GroupList"></activity>
+        <activity android:name=".Event_Status"></activity>
+        <activity android:name=".Event_StatusList"></activity>
 
 
     </application>

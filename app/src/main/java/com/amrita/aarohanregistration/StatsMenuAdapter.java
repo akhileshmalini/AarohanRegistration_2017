@@ -83,10 +83,17 @@ public class StatsMenuAdapter extends RecyclerView.Adapter<StatsMenuAdapter.MyVi
                 mContext.startActivity(intent);
 
             }
-
             else if (position==4){
 
                 Intent intent =new Intent(mContext,Wnner_SchoolsList.class);
+                mContext.startActivity(intent);
+
+            }
+
+
+            else if (position==5){
+
+                Intent intent =new Intent(mContext,Event_StatusList.class);
                 mContext.startActivity(intent);
 
             }

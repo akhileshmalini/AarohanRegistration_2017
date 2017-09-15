@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Event_Dashboard_Induvidual extends AppCompatActivity {
 
     String EventName,cate,grpCount,groupno,groupName;
-    Button addStd,viewGrps,studList,scanView,winners;
+    Button addStd,viewGrps,studList,scanView,winners,status;
     FirebaseDatabase database;
     TextView e,c,gr;
 
@@ -74,6 +74,16 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
 
 
                 Intent intent=new Intent(Event_Dashboard_Induvidual.this,Event_ShowStudentScanActivity_Group.class);
+                intent.putExtra("EventName",EventName);
+                startActivity(intent);
+            }
+        });
+
+        status= (Button) findViewById(R.id.button17);
+        status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(Event_Dashboard_Induvidual.this,Event_Status.class);
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
             }

@@ -61,6 +61,8 @@ public class Event_ShowWinnerGroupsAdapter extends RecyclerView.Adapter<Event_Sh
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Event_Winner_Model group = grpsList.get(position);
+
+
         holder.place.setText(group.getPlace());
         holder.groupid.setText(group.getGrp());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,11 +90,13 @@ public class Event_ShowWinnerGroupsAdapter extends RecyclerView.Adapter<Event_Sh
 
                                 final DatabaseReference WinnerRef = database.getReference("Events").child(Eventname).child("Winners").child(group.getPlace());
                                 WinnerRef.removeValue();
-                                DatabaseReference StdRef = database.getReference("Winners").child(SchoolName).child(Eventname).child(group.getPlace());
+                                DatabaseReference StdRef = database.getReference("Winners").child(group.getSchool()).child(Eventname).child(group.getPlace());
                                 StdRef.removeValue();
 
                                 Toast.makeText(mContext,"Removed Group",Toast.LENGTH_SHORT).show();
+                                grpsList.remove(position);
                                 notifyDataSetChanged();
+                                notifyItemRemoved(position);
                                 dialog.dismiss();
                             }
                         });

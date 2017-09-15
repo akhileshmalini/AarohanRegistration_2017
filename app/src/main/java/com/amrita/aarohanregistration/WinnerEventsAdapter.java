@@ -1,6 +1,7 @@
 package com.amrita.aarohanregistration;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,17 @@ public class WinnerEventsAdapter extends RecyclerView.Adapter<WinnerEventsAdapte
         holder.title.setText(stat.getEventName());
         holder.fedstat.setText(stat.getPlace());
 
-      
+      holder.itemView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Intent intent = new Intent(mContext,Winner_GroupList.class);
+              intent.putExtra("EventName",stat.getEventName());
+              intent.putExtra("Groups",stat.getGrpOrid());
+              intent.putExtra("Place",stat.getPlace());
+              mContext.startActivity(intent);
+
+          }
+      });
         
 
     }

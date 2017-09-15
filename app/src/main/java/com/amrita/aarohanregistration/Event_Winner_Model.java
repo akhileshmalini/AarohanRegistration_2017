@@ -6,15 +6,8 @@ package com.amrita.aarohanregistration;
 
 public class Event_Winner_Model {
 
-    String grp, place;
+    String grp, place,school;
 
-    public Event_Winner_Model(String grp, String place) {
-        this.grp = grp;
-        this.place = place;
-    }
-
-    public Event_Winner_Model() {
-    }
 
     public String getGrp() {
         return grp;
@@ -30,5 +23,24 @@ public class Event_Winner_Model {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public Event_Winner_Model() {
+
+    }
+
+    public Event_Winner_Model(String grp, String place, String school) {
+
+        this.grp = grp;
+        this.place = place;
+        this.school = school;
     }
 }

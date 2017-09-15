@@ -27,24 +27,28 @@ public class Event_ShowWinnerInduvidualsAdapter extends RecyclerView.Adapter<Eve
     String Eventname;
     FirebaseDatabase database;
     Context activityContext;
+    String SchoolName;
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView place,groupid;
+        public TextView place, groupid;
 
         public MyViewHolder(View view) {
             super(view);
             place = (TextView) view.findViewById(R.id.evName);
-            groupid= (TextView) view.findViewById(R.id.evStat);
+            groupid = (TextView) view.findViewById(R.id.evStat);
         }
     }
 
 
-    public Event_ShowWinnerInduvidualsAdapter(List<Event_Winner_Model> grpsList, Context mContext, String Eventname, FirebaseDatabase database, Context context) {
+    public Event_ShowWinnerInduvidualsAdapter(List<Event_Winner_Model> grpsList, Context mContext, String Eventname, String SchoolName, FirebaseDatabase database, Context context) {
         this.grpsList = grpsList;
         this.mContext = mContext;
-        this.Eventname=Eventname;
-        this.database=database;
-        this.activityContext=context;
+        this.Eventname = Eventname;
+        this.database = database;
+        this.activityContext = context;
+        this.SchoolName = SchoolName;
     }
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -63,11 +67,9 @@ public class Event_ShowWinnerInduvidualsAdapter extends RecyclerView.Adapter<Eve
             @Override
             public void onClick(View view) {
 
-                Intent intent =new Intent(mContext,Event_ShowStudent_Induviudal.class);
-                intent.putExtra("EventName",Eventname);
-                intent.putExtra("ArhnId",group.getGrp());
-
-
+                Intent intent = new Intent(mContext, Event_ShowStudent_Induviudal.class);
+                intent.putExtra("EventName", Eventname);
+                intent.putExtra("ArhnId", group.getGrp());
 
 
                 mContext.startActivity(intent);
@@ -81,14 +83,18 @@ public class Event_ShowWinnerInduvidualsAdapter extends RecyclerView.Adapter<Eve
 
                 AlertDialog alertDialog = new AlertDialog.Builder(activityContext).create();
                 alertDialog.setTitle("Confirm");
-                alertDialog.setMessage("Are you sure you want to remove "+group.getGrp()+" from "+group.getPlace()+"?");
+                alertDialog.setMessage("Are you sure you want to remove " + group.getGrp() + " from " + group.getPlace() + "?");
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 final DatabaseReference WinnerRef = database.getReference("Events").child(Eventname).child("Winners").child(group.getPlace());
                                 WinnerRef.removeValue();
-                                Toast.makeText(mContext,"Removed Student",Toast.LENGTH_SHORT).show();
+                                DatabaseReference StdRef = database.getReference("Winners").child(group.getSchool()).child(Eventname).child(group.getPlace());
+                                StdRef.removeValue();
+                                grpsList.remove(position);
+                                Toast.makeText(mContext, "Removed Student", Toast.LENGTH_SHORT).show();
+                                notifyItemRemoved(position);
                                 notifyDataSetChanged();
                                 dialog.dismiss();
                             }
@@ -107,18 +113,12 @@ public class Event_ShowWinnerInduvidualsAdapter extends RecyclerView.Adapter<Eve
         });
 
 
-
-
     }
 
     @Override
     public int getItemCount() {
         return grpsList.size();
     }
-
-
-
-
 
 
 }

@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,49 +19,47 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 /**
- * Created by Akhilesh on 9/14/2017.
+ * Created by Akhilesh on 9/7/2017.
  */
 
-public class Winner_EventsList extends AppCompatActivity {
+public class Event_StatusList extends AppCompatActivity {
 
-    FirebaseDatabase database;
-    WinnerEventsAdapter mAdapter;
     ProgressBar progressBar;
-
-    ArrayList<Winner_Events> eventList;
-    String SchoolName;
+    FirebaseDatabase database;
+    StatisticEventAdapter mAdapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        database= FirebaseDatabase.getInstance();
 
-        eventList=new ArrayList<>();
-       SchoolName=getIntent().getExtras().getString("School");
+        final ArrayList<Statistic> arrayList =new ArrayList<>();
 
         progressBar= (ProgressBar) findViewById(R.id.progressBar3);
+        database= FirebaseDatabase.getInstance();
+        DatabaseReference ref =database.getReference("Events");
 
-        DatabaseReference StdRef = database.getReference("Winners").child(SchoolName);
-        StdRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot Events : dataSnapshot.getChildren()){
-                            String place="";
-                            String grp="";
-                            for(DataSnapshot p : Events.getChildren()){
-                                place=p.getKey().toString();
-                                grp=p.getValue().toString();
-                            }
+                long total=dataSnapshot.getChildrenCount();
 
-                        eventList.add(new Winner_Events(Events.getKey(),place,grp));
-                    mAdapter.notifyDataSetChanged();
-                    progressBar.setVisibility(View.INVISIBLE);
+                for(DataSnapshot Event : dataSnapshot.getChildren()){
+                    if(!Event.hasChild("EventStatus")) {
+                        arrayList.add(new Statistic(Event.getKey(), "No Status Available"));
+                    }else{
 
+                        arrayList.add(new Statistic(Event.getKey(),Event.child("EventStatus").getValue().toString()));
 
-
-
+                    }
 
                 }
+
+                progressBar.setVisibility(View.INVISIBLE);
+                mAdapter.notifyDataSetChanged();
+
+
+
+
             }
 
             @Override
@@ -69,18 +68,17 @@ public class Winner_EventsList extends AppCompatActivity {
             }
         });
 
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mAdapter = new WinnerEventsAdapter(eventList,getApplicationContext());
+        mAdapter = new StatisticEventAdapter(arrayList,getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-
-
-
     }
-    
-    
+
+
+
 }

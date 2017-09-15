@@ -23,8 +23,8 @@ public class Stats_Home extends AppCompatActivity {
 
         recyclerView= (RecyclerView) findViewById(R.id.recycler_view2);
 
-        int imga[] = {R.drawable.students,R.drawable.events, R.drawable.school,R.drawable.bgfeedback,R.drawable.events};
-        String names[] ={"Student Statistics", "Event Statistics","Schoolwise Statistics","Feedback Statistics","Winners Statistics"};
+        int imga[] = {R.drawable.students,R.drawable.events, R.drawable.school,R.drawable.bgfeedback,R.drawable.school,R.drawable.events};
+        String names[] ={"Student Statistics", "Event Statistics","Schoolwise Statistics","Feedback Statistics","Winners Statistics","Event Status"};
         ArrayList<MainMenuItems> items =new ArrayList<>();
 
         for(int i=0;i<imga.length;i++){
