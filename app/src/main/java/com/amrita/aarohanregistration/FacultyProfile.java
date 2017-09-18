@@ -21,8 +21,9 @@ import android.widget.Toast;
 
 public class FacultyProfile extends AppCompatActivity {
 
-    TextView name, phone, email;
-    Button call,emailsend;
+    TextView txt_name, txt_phone, txt_email;
+    Button call, emailsend;
+    String Name, Phone, Email;
 
 
     @Override
@@ -30,37 +31,40 @@ public class FacultyProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.faculty_profile);
 
-        String n = getIntent().getExtras().getString("Name");
-        final String p = getIntent().getExtras().getString("Phone");
-        final String e = getIntent().getExtras().getString("Email");
+        //Getting Intent Extras
+        Name = getIntent().getExtras().getString("Name");
+        Phone = getIntent().getExtras().getString("Phone");
+        Email = getIntent().getExtras().getString("Email");
 
-
-        name = (TextView) findViewById(R.id.textView15);
-        phone = (TextView) findViewById(R.id.textView19);
-        email = (TextView) findViewById(R.id.textView18);
-        emailsend= (Button) findViewById(R.id.button7);
+        //View Bindings
+        txt_name = (TextView) findViewById(R.id.textView15);
+        txt_phone = (TextView) findViewById(R.id.textView19);
+        txt_email = (TextView) findViewById(R.id.textView18);
+        emailsend = (Button) findViewById(R.id.button7);
         call = (Button) findViewById(R.id.button6);
 
-        name.setText(n);
-        phone.setText(p);
-        email.setText(e);
+        //Set Data
+        txt_name.setText(Name);
+        txt_phone.setText(Phone);
+        txt_email.setText(Email);
 
+
+        //When CallButton is Pressed
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("Phone", p);
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(getApplicationContext(),"Copied Phone Number to Clipboard",Toast.LENGTH_LONG).show();
 
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", Phone, null));
+                startActivity(intent);
             }
         });
 
+        //When Email Button is Pressed
         emailsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("Email", e);
+                ClipData clip = ClipData.newPlainText("Email", Email);
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(getApplicationContext(),"Copied Email to Clipboard",Toast.LENGTH_LONG).show();
             }

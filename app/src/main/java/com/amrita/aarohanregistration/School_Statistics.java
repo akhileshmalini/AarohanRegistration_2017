@@ -39,7 +39,6 @@ public class School_Statistics extends AppCompatActivity implements SearchView.O
     ArrayList<Statistic> arrayListCopy;
 
     RecyclerView recyclerView;
-
     ArrayList<Statistic> original,temp;
 
     @Override

@@ -3,12 +3,15 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
+
+
     <TextView
         android:id="@+id/dashTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Event Name"
-        android:textSize="25dp"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />
@@ -28,100 +31,155 @@
         android:layout_height="wrap_content"
         android:text="GroupCount"
         android:textSize="20dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="100dp"
         android:layout_below="@+id/dashCat"
-   />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="match_parent"
-        android:layout_margin="20dp"
-        android:layout_height="wrap_content"
-        android:text="Add New Group"
-        android:background="@color/colorPrimary"
-        android:layout_below="@+id/dashGrp"
-        android:textColor="#FFFFFF"
-        android:padding="10dp"
-
-        android:layout_marginTop="150dp"
-        android:layout_centerHorizontal="true"
         />
 
-    <Button
-        android:id="@+id/button10"
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="150dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student Entry"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:text="Add New Group"
+
+                />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:text="Groups"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student Views"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="10dp"
+                android:text="View Student List"
+                android:textColor="#FFFFFF" />
+
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorPrimaryDark"
+                android:padding="10dp"
+                android:text="Scan to View Student "
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event Statistics"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                android:text="Set Event Status"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                android:text="Winner List"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View Groups"
-        android:padding="10dp"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:layout_below="@+id/button9"
-        android:layout_alignLeft="@+id/button9"
-        android:layout_alignStart="@+id/button9"
-        android:layout_alignRight="@+id/button9"
-        android:layout_alignEnd="@+id/button9" />
-
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Student List"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:padding="10dp"
-
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/button10"
-        android:layout_alignLeft="@+id/button10"
-        android:layout_alignStart="@+id/button10"
-        android:layout_alignRight="@+id/button10"
-        android:layout_alignEnd="@+id/button10" />
-
-    <Button
-        android:id="@+id/button12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Winner List"
-        android:padding="10dp"
-
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/button13"
-        android:layout_alignStart="@+id/button13"
-        android:layout_alignRight="@+id/button13"
-        android:layout_alignEnd="@+id/button13" />
-
-    <Button
-        android:id="@+id/button13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Scan to View Student "
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:layout_below="@+id/button11"
-        android:layout_alignLeft="@+id/button11"
-        android:layout_alignStart="@+id/button11"
-        android:layout_alignRight="@+id/button11"
-        android:layout_alignEnd="@+id/button11" />
-
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Event Status"
-        android:padding="10dp"
-        android:textColor="#FFFFFF"
-        android:background="@color/colorPrimary"
-        android:layout_below="@+id/button13"
-        android:layout_alignLeft="@+id/button12"
-        android:layout_alignStart="@+id/button12"
-        android:layout_marginTop="11dp"
-        android:layout_alignRight="@+id/button13"
-        android:layout_alignEnd="@+id/button13" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+ />
 
 
 </RelativeLayout>

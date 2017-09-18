@@ -8,7 +8,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="81dp">
+        android:layout_marginTop="81dp"
+        android:id="@+id/radioGroup">
         <RadioButton
             android:id="@+id/radioButton"
             android:layout_width="wrap_content"
@@ -16,6 +17,7 @@
             android:layout_marginTop="51dp"
             android:textSize="20dp"
             android:text="Started"
+            android:textStyle="italic"
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/radioButton3"
             android:layout_alignStart="@+id/radioButton3"
@@ -28,6 +30,8 @@
             android:layout_marginTop="23dp"
             android:text="In Progress"
             android:textSize="20dp"
+            android:textStyle="italic"
+
             android:layout_below="@+id/radioButton"
             android:layout_alignLeft="@+id/radioButton"
             android:layout_alignStart="@+id/radioButton"
@@ -39,6 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
             android:textSize="20dp"
+            android:textStyle="italic"
+
             android:text="Results Awaited"
             android:layout_below="@+id/radioButton2"
             android:layout_centerHorizontal="true"
@@ -51,9 +57,45 @@
             android:layout_marginTop="22dp"
             android:text="Results Announced"
             android:textSize="20dp"
+            android:textStyle="italic"
+
             android:layout_below="@+id/radioButton3"
             android:layout_alignLeft="@+id/radioButton3"
             android:layout_alignStart="@+id/radioButton3"
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:textSize="25dp"
+        android:textStyle="bold|italic"
+        android:text="Event Status" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
+
+        android:text="Current Status" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView41"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="9dp"
+        android:textSize="20dp"
+
+        android:text="No Status available" />
 </RelativeLayout>

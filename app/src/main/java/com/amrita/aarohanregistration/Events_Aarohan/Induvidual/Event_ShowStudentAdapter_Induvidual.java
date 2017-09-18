@@ -1,4 +1,4 @@
-package com.amrita.aarohanregistration;
+package com.amrita.aarohanregistration.Events_Aarohan.Induvidual;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.amrita.aarohanregistration.Events_Aarohan.Induvidual.Event_ShowStudent_Induviudal;
+import com.amrita.aarohanregistration.Events_Aarohan.Event_Student_Group;
+import com.amrita.aarohanregistration.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,9 +20,9 @@ import java.util.List;
  * Created by Akhilesh on 9/8/2017.
  */
 
-public class Winner_ShowStudentAdapter extends RecyclerView.Adapter<Winner_ShowStudentAdapter.MyViewHolder> {
+public class Event_ShowStudentAdapter_Induvidual extends RecyclerView.Adapter<Event_ShowStudentAdapter_Induvidual.MyViewHolder> {
 
-    private List<String> studList;
+    private List<Event_Student_Group> studList;
     Context mContext;
     DatabaseReference ref;
     Context activityContext;
@@ -38,7 +39,7 @@ public class Winner_ShowStudentAdapter extends RecyclerView.Adapter<Winner_ShowS
     }
 
 
-    public Winner_ShowStudentAdapter(List<String> studList, Context mContext, String EventName, Context ActivityContext) {
+    public Event_ShowStudentAdapter_Induvidual(List<Event_Student_Group> studList, Context mContext, String EventName,Context ActivityContext) {
         this.studList = studList;
         this.mContext = mContext;
         this.EventName=EventName;
@@ -55,15 +56,14 @@ public class Winner_ShowStudentAdapter extends RecyclerView.Adapter<Winner_ShowS
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        final String event = studList.get(position);
-        holder.title.setText(event);
-
+        final Event_Student_Group event = studList.get(position);
+        holder.title.setText(event.getStdName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(mContext,Event_ShowStudent_Induviudal.class);
-                intent.putExtra("ArhnId",event);
+                intent.putExtra("ArhnId",event.getStdName());
                 intent.putExtra("EventName",EventName);
 
                 mContext.startActivity(intent);

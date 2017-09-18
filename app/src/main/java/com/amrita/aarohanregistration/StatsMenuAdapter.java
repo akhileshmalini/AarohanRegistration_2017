@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amrita.aarohanregistration.Events_Aarohan.Event_StatusList;
+
 import java.util.List;
 
 /**
