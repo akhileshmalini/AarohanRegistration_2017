@@ -31,16 +31,13 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class Event_StudentProfile_Induvidual extends AppCompatActivity {
-    ImageView statusImg;
-    TextView status,arhnIdtxt,name,school,gender,category;
-    TextView a,b,c,d,e;
+    ImageView img_status;
+    TextView txt_status,txt_arhnIdtxt,txt_stdName,txt_schoolName,txt_stdGender,txt_stdCategory,a,b,c,d,e;
     ProgressBar progressBar;
     String cate,arhnID,groupName;
     FirebaseDatabase database;
     String EventName;
-    Button addNew, remove;
-
-
+    Button btn_addNew, btn_remove;
     //References
     DatabaseReference categoryRef,eventStdRef,studentsRef;
 
@@ -54,20 +51,38 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scan_studentprofile_induvidua);
-
         database= FirebaseDatabase.getInstance();
 
+        //Get Intent Extras
         arhnID=getIntent().getExtras().getString("ArhnId");
         EventName =getIntent().getExtras().getString("EventName");
 
+        //View Bindings
+        img_status= (ImageView) findViewById(R.id.imageView);
+        txt_status= (TextView) findViewById(R.id.textView3);
+        btn_addNew= (Button) findViewById(R.id.button3);
+        btn_remove= (Button) findViewById(R.id.button2);
+        txt_arhnIdtxt = (TextView) findViewById(R.id.txt_id);
+        txt_stdName = (TextView) findViewById(R.id.txt_name);
+        txt_schoolName = (TextView) findViewById(R.id.txt_school);
+        txt_stdGender = (TextView) findViewById(R.id.txt_gender);
+        txt_stdCategory = (TextView) findViewById(R.id.txt_category);
+        progressBar= (ProgressBar) findViewById(R.id.progressBar2);
+        a= (TextView) findViewById(R.id.textView4);
+        b= (TextView) findViewById(R.id.textView6);
+        c= (TextView) findViewById(R.id.textView8);
+        d= (TextView) findViewById(R.id.textView10);
+        e= (TextView) findViewById(R.id.textView12);
+
+        
+        
+        //Find Category to Which Student Belongs
         categoryRef = database.getReference("Events").child(EventName).child("Category");
-
-
-
         categoryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 cate=dataSnapshot.getValue().toString();
+                //Find Out If Student is Valid
                 studentIsValid();
             }
 
@@ -79,30 +94,15 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
 
 
 
-        statusImg= (ImageView) findViewById(R.id.imageView);
-        status= (TextView) findViewById(R.id.textView3);
-        addNew= (Button) findViewById(R.id.button3);
-        remove= (Button) findViewById(R.id.button2);
-
-        arhnIdtxt = (TextView) findViewById(R.id.txt_id);
-        name = (TextView) findViewById(R.id.txt_name);
-        school = (TextView) findViewById(R.id.txt_school);
-        gender = (TextView) findViewById(R.id.txt_gender);
-        category = (TextView) findViewById(R.id.txt_category);
-        progressBar= (ProgressBar) findViewById(R.id.progressBar2);
-        a= (TextView) findViewById(R.id.textView4);
-        b= (TextView) findViewById(R.id.textView6);
-        c= (TextView) findViewById(R.id.textView8);
-        d= (TextView) findViewById(R.id.textView10);
-        e= (TextView) findViewById(R.id.textView12);
 
 
         hideContent();
 
-
-        remove.setOnClickListener(new View.OnClickListener() {
+        //Remove Student From Event
+        btn_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Dialog to Get Passkey before Removal
                 final Dialog passDialog = new Dialog(Event_StudentProfile_Induvidual.this, R.style.MyAlertDialogStyle);
                 passDialog.setContentView(R.layout.dialog_password);
                 passDialog.setCancelable(true);
@@ -138,7 +138,8 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
             }
         });
 
-        addNew.setOnClickListener(new View.OnClickListener() {
+        //Add New Student to List
+        btn_addNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(getApplicationContext(),Event_StudentScanActivity_Induvidual.class);
@@ -156,40 +157,38 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
 
     void showContent(){
         progressBar.setVisibility(View.INVISIBLE);
-        arhnIdtxt.setVisibility(View.VISIBLE);
-        name.setVisibility(View.VISIBLE);
-        school.setVisibility(View.VISIBLE);
-        gender.setVisibility(View.VISIBLE);
-        category.setVisibility(View.VISIBLE);
+        txt_arhnIdtxt.setVisibility(View.VISIBLE);
+        txt_stdName.setVisibility(View.VISIBLE);
+        txt_schoolName.setVisibility(View.VISIBLE);
+        txt_stdGender.setVisibility(View.VISIBLE);
+        txt_stdCategory.setVisibility(View.VISIBLE);
         a.setVisibility(View.VISIBLE);
         b.setVisibility(View.VISIBLE);
         c.setVisibility(View.VISIBLE);
         d.setVisibility(View.VISIBLE);
         e.setVisibility(View.VISIBLE);
-
-        addNew.setVisibility(View.VISIBLE);
-        remove.setVisibility(View.VISIBLE);
-        statusImg.setVisibility(View.VISIBLE);
+        btn_addNew.setVisibility(View.VISIBLE);
+        btn_remove.setVisibility(View.VISIBLE);
+        img_status.setVisibility(View.VISIBLE);
 
     }
 
     void hideContent(){
-        status.setText("Retrieving Student Information...");
-
-        arhnIdtxt.setVisibility(View.INVISIBLE);
-        name.setVisibility(View.INVISIBLE);
-        school.setVisibility(View.INVISIBLE);
-        gender.setVisibility(View.INVISIBLE);
-        category.setVisibility(View.INVISIBLE);
+        txt_status.setText("Retrieving Student Information...");
+        txt_arhnIdtxt.setVisibility(View.INVISIBLE);
+        txt_stdName.setVisibility(View.INVISIBLE);
+        txt_schoolName.setVisibility(View.INVISIBLE);
+        txt_stdGender.setVisibility(View.INVISIBLE);
+        txt_stdCategory.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
         a.setVisibility(View.INVISIBLE);
         b.setVisibility(View.INVISIBLE);
         c.setVisibility(View.INVISIBLE);
         d.setVisibility(View.INVISIBLE);
-        addNew.setVisibility(View.INVISIBLE);
+        btn_addNew.setVisibility(View.INVISIBLE);
         e.setVisibility(View.INVISIBLE);
-        remove.setVisibility(View.INVISIBLE);
-        statusImg.setVisibility(View.INVISIBLE);
+        btn_remove.setVisibility(View.INVISIBLE);
+        img_status.setVisibility(View.INVISIBLE);
 
     }
 
@@ -204,15 +203,15 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
 
                     studentHasParicipated();
                 }else{
-                    statusImg.setVisibility(View.VISIBLE);
-                    status.setVisibility(View.VISIBLE);
-                    status.setText("Invalid ID! Student does Not Exist");
+                    img_status.setVisibility(View.VISIBLE);
+                    txt_status.setVisibility(View.VISIBLE);
+                    txt_status.setText("Invalid ID! Student does Not Exist");
                     Glide.with(getApplicationContext()).load(R.drawable.nonots)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .centerCrop()
-                            .into(statusImg);
+                            .into(img_status);
                     progressBar.setVisibility(View.INVISIBLE);
-                    addNew.setVisibility(View.VISIBLE);
+                    btn_addNew.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -236,11 +235,11 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
                 if (snapshot.getValue()!=null) {
                     Toast.makeText(getApplicationContext(),""+snapshot.getValue(),Toast.LENGTH_SHORT).show();
                     getStudentDetails(21);
-                    status.setText("Student has Already been Added in this Event!");
+                    txt_status.setText("Student has Already been Added in this Event!");
                     Glide.with(getApplicationContext()).load(R.drawable.nonots)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .centerCrop()
-                            .into(statusImg);
+                            .into(img_status);
                     showContent();
                 }else{
                     getStudentDetails(1996);
@@ -266,36 +265,31 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
                 Student student =dataSnapshot.getValue(Student.class);
                 String nm=student.getStdName(),sc=student.getSchool(),gen=student.getGender();
                 ca[0] =student.getCategory();
-                arhnIdtxt.setText(arhnID);
-                name.setText(nm);
-                school.setText(sc);
-                gender.setText(gen);
-                category.setText(ca[0]);
+                txt_arhnIdtxt.setText(arhnID);
+                txt_stdName.setText(nm);
+                txt_schoolName.setText(sc);
+                txt_stdGender.setText(gen);
+                txt_stdCategory.setText(ca[0]);
                 if(a==1996){
-
                     if(ca[0].equals(cate)){
                         Glide.with(getApplicationContext()).load(R.drawable.yesokay)
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .centerCrop()
-                                .into(statusImg);
-                        status.setText("Student Allowed to Enter Event");
+                                .into(img_status);
+                        txt_status.setText("Student Allowed to Enter Event");
                         DatabaseReference eventStdRef = database.getReference("Events").child(EventName).child("Students");
                             eventStdRef.child(arhnID).setValue(0);
                         studentsRef.child("EventsAttended").child(EventName).setValue(0);
-
-
                         showContent();
                     }    else{
                         Glide.with(getApplicationContext()).load(R.drawable.nonots)
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .centerCrop()
-                                .into(statusImg);
-
-                        status.setText("Student Doesn't Belong to this Category");
-
-                        category.setTypeface(null, Typeface.BOLD);
+                                .into(img_status);
+                        txt_status.setText("Student Doesn't Belong to this Category");
+                        txt_stdCategory.setTypeface(null, Typeface.BOLD);
                         showContent();
-                        remove.setVisibility(View.INVISIBLE);
+                        btn_remove.setVisibility(View.INVISIBLE);
 
                     }
                 }

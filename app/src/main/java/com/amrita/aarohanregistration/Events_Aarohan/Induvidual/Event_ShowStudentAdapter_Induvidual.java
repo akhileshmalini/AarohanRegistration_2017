@@ -20,18 +20,22 @@ import java.util.List;
  * Created by Akhilesh on 9/8/2017.
  */
 
+
+/**
+ * Adapter to populate Student List and Will Redirect to Student Details in an induvidual Event
+ */
+
+
 public class Event_ShowStudentAdapter_Induvidual extends RecyclerView.Adapter<Event_ShowStudentAdapter_Induvidual.MyViewHolder> {
 
     private List<Event_Student_Group> studList;
     Context mContext;
-    DatabaseReference ref;
-    Context activityContext;
-    FirebaseDatabase database;
     String EventName;
     Context ActivityContext;
+
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
-
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.evName);
@@ -50,22 +54,21 @@ public class Event_ShowStudentAdapter_Induvidual extends RecyclerView.Adapter<Ev
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.showstudent_listitem, parent, false);
-
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Event_Student_Group event = studList.get(position);
-        holder.title.setText(event.getStdName());
 
+        holder.title.setText(event.getStdName());
+        //When Item Clicked, Show the details of students.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(mContext,Event_ShowStudent_Induviudal.class);
                 intent.putExtra("ArhnId",event.getStdName());
                 intent.putExtra("EventName",EventName);
-
                 mContext.startActivity(intent);
                 ((Activity)ActivityContext).finish();
             }

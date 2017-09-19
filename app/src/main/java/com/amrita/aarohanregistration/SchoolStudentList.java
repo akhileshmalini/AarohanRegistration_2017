@@ -32,13 +32,13 @@ public class SchoolStudentList extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_heading);
+        setContentView(R.layout.activity_main);
         progressBar= (ProgressBar) findViewById(R.id.progressBar3);
         database= FirebaseDatabase.getInstance();
 
         String schName =getIntent().getExtras().getString("School");
         final ArrayList<Event_Student_Group> schList =new ArrayList<>();
-        textView= (TextView) findViewById(R.id.textView20);
+        textView= (TextView) findViewById(R.id.txtTitle);
         textView.setText(schName);
 
         DatabaseReference EventsRef = database.getReference("Schools").child(schName).child("Students");

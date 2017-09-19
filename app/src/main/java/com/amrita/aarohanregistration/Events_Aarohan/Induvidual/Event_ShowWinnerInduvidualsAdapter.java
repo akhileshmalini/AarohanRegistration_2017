@@ -29,26 +29,24 @@ public class Event_ShowWinnerInduvidualsAdapter extends RecyclerView.Adapter<Eve
     String Eventname;
     FirebaseDatabase database;
     Context activityContext;
-    String SchoolName;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView place, groupid;
+        public TextView place, arhnid;
 
         public MyViewHolder(View view) {
             super(view);
             place = (TextView) view.findViewById(R.id.evName);
-            groupid = (TextView) view.findViewById(R.id.evStat);
+            arhnid = (TextView) view.findViewById(R.id.evStat);
         }
     }
 
 
-    public Event_ShowWinnerInduvidualsAdapter(List<Event_Winner_Model> grpsList, Context mContext, String Eventname, String SchoolName, FirebaseDatabase database, Context context) {
+    public Event_ShowWinnerInduvidualsAdapter(List<Event_Winner_Model> grpsList, Context mContext, String Eventname, FirebaseDatabase database, Context context) {
         this.grpsList = grpsList;
         this.mContext = mContext;
         this.Eventname = Eventname;
         this.database = database;
         this.activityContext = context;
-        this.SchoolName = SchoolName;
     }
 
 
@@ -64,16 +62,15 @@ public class Event_ShowWinnerInduvidualsAdapter extends RecyclerView.Adapter<Eve
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Event_Winner_Model group = grpsList.get(position);
         holder.place.setText(group.getPlace());
-        holder.groupid.setText(group.getGrp());
+        holder.arhnid.setText(group.getGrp());
+
+        //Upon Click Redirect to Winner Details
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(mContext, Event_ShowStudent_Induviudal.class);
                 intent.putExtra("EventName", Eventname);
                 intent.putExtra("ArhnId", group.getGrp());
-
-
                 mContext.startActivity(intent);
 
             }
@@ -89,7 +86,6 @@ public class Event_ShowWinnerInduvidualsAdapter extends RecyclerView.Adapter<Eve
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-
                                 final DatabaseReference WinnerRef = database.getReference("Events").child(Eventname).child("Winners").child(group.getPlace());
                                 WinnerRef.removeValue();
                                 DatabaseReference StdRef = database.getReference("Winners").child(group.getSchool()).child(Eventname).child(group.getPlace());

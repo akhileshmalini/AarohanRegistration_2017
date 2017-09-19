@@ -100,7 +100,7 @@ public class Event_Winnner_Induvidual extends AppCompatActivity {
         };
         WinnerRef.addValueEventListener(postListener);
 
-        mAdapter = new Event_ShowWinnerInduvidualsAdapter(list,getApplicationContext(),EventName,SchoolName,database,Event_Winnner_Induvidual.this);
+        mAdapter = new Event_ShowWinnerInduvidualsAdapter(list,getApplicationContext(),EventName,database,Event_Winnner_Induvidual.this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -110,11 +110,8 @@ public class Event_Winnner_Induvidual extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 std =stdEntry.getText().toString();
                 place =spinner.getSelectedItem().toString();
-
                 if(!std.equals("")){
                     boolean go=true;
                     String tSch="",tplc="";
@@ -125,7 +122,6 @@ public class Event_Winnner_Induvidual extends AppCompatActivity {
                             tplc=s.getPlace();
                             break;
                         }
-
                     }
 
                     if(go){

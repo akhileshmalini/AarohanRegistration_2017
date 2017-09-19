@@ -102,7 +102,7 @@ public class Event_Winnner_GroupEvent extends AppCompatActivity {
         WinnerRef.addValueEventListener(postListener);
 
         //Initialize Adapter
-        mAdapter = new Event_ShowWinnerGroupsAdapter(list, getApplicationContext(), EventName, SchoolName, database, Event_Winnner_GroupEvent.this);
+        mAdapter = new Event_ShowWinnerGroupsAdapter(list, getApplicationContext(), EventName, database, Event_Winnner_GroupEvent.this);
 
         //Set adapter to RecyclerView
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());

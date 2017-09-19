@@ -29,7 +29,6 @@ public class Event_ShowWinnerGroupsAdapter extends RecyclerView.Adapter<Event_Sh
     String Eventname;
     FirebaseDatabase database;
     Context activityContext;
-    String SchoolName;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView place,groupid;
@@ -42,13 +41,12 @@ public class Event_ShowWinnerGroupsAdapter extends RecyclerView.Adapter<Event_Sh
     }
 
 
-    public Event_ShowWinnerGroupsAdapter(List<Event_Winner_Model> grpsList, Context mContext, String Eventname,String SchoolName,FirebaseDatabase database, Context context) {
+    public Event_ShowWinnerGroupsAdapter(List<Event_Winner_Model> grpsList, Context mContext, String Eventname,FirebaseDatabase database, Context context) {
         this.grpsList = grpsList;
         this.mContext = mContext;
         this.Eventname=Eventname;
         this.database=database;
         this.activityContext=context;
-        this.SchoolName=SchoolName;
     }
 
     @Override

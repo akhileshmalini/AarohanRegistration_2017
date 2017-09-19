@@ -26,42 +26,48 @@ import java.util.ArrayList;
  */
 
 public class Event_StudentList_Induvidual extends AppCompatActivity {
-    FirebaseDatabase database;
-    ProgressBar progressBar;
-    Event_ShowStudentAdapter_Induvidual mAdapter;
     TextView evTtitle;
-     ArrayList<Event_Student_Group> stdList;
+    ProgressBar progressBar;
+    RecyclerView recyclerView;
+    Event_ShowStudentAdapter_Induvidual mAdapter;
+    FirebaseDatabase database;
+    ArrayList<Event_Student_Group> stdList;
     String evName;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_heading);
-        database= FirebaseDatabase.getInstance();
+        setContentView(R.layout.activity_main);
+        database = FirebaseDatabase.getInstance();
 
+        //Get Intent Extras
+        evName = getIntent().getExtras().getString("Event");
 
-        evName=getIntent().getExtras().getString("Event");
+        //View Bindings
+        progressBar = (ProgressBar) findViewById(R.id.progressBar3);
+        evTtitle = (TextView) findViewById(R.id.txtTitle);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        progressBar= (ProgressBar) findViewById(R.id.progressBar3);
-
-        evTtitle= (TextView) findViewById(R.id.textView20);
+        //Set Title as Event
         evTtitle.setText(evName);
 
-        stdList =new ArrayList<>();
+        //Initialize ArrayList
+        stdList = new ArrayList<>();
 
-
-
+        refreshList();
     }
 
 
+    void refreshList() {
 
-    void refreshList(){
+
         DatabaseReference EventsRef = database.getReference("Events").child(evName).child("Students");
         EventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.getChildrenCount() == 0) {
                     progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(),"No Students Found",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "No Students Found", Toast.LENGTH_SHORT).show();
 
                 } else {
                     stdList.clear();
@@ -73,6 +79,7 @@ public class Event_StudentList_Induvidual extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -80,16 +87,13 @@ public class Event_StudentList_Induvidual extends AppCompatActivity {
         });
 
 
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mAdapter = new Event_ShowStudentAdapter_Induvidual(stdList,getApplicationContext(),evName,Event_StudentList_Induvidual.this);
+        mAdapter = new Event_ShowStudentAdapter_Induvidual(stdList, getApplicationContext(), evName, Event_StudentList_Induvidual.this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
     }
-
 
 
     @Override

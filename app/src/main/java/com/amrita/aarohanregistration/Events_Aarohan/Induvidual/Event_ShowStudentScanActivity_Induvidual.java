@@ -20,30 +20,31 @@ import com.amrita.aarohanregistration.ScanActivity;
 import com.google.android.gms.vision.barcode.Barcode;
 
 public class Event_ShowStudentScanActivity_Induvidual extends AppCompatActivity {
-    Button scanbtn , manualEntry,studlist;
+    Button scanbtn, manualEntry, studlist;
     EditText manualCode;
-    TextView result,textTitle;
+    TextView result, textTitle;
     public static final int REQUEST_CODE = 100;
     public static final int PERMISSION_REQUEST = 200;
 
-    String EventName,cate;
+    String EventName, cate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        EventName =getIntent().getExtras().getString("EventName");
+        EventName = getIntent().getExtras().getString("EventName");
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studentscan);
         scanbtn = (Button) findViewById(R.id.scanbtn);
         manualEntry = (Button) findViewById(R.id.button4);
-        manualCode= (EditText) findViewById(R.id.editArhnID);
-        textTitle= (TextView) findViewById(R.id.textTitle);
+        manualCode = (EditText) findViewById(R.id.editArhnID);
+        textTitle = (TextView) findViewById(R.id.textTitle);
         studlist = (Button) findViewById(R.id.button8);
         textTitle.setText(EventName);
 
         result = (TextView) findViewById(R.id.result);
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST);
         }
         scanbtn.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +58,8 @@ public class Event_ShowStudentScanActivity_Induvidual extends AppCompatActivity 
             @Override
             public void onClick(View view) {
 
-                Intent intent =new Intent(Event_ShowStudentScanActivity_Induvidual.this,Event_StudentList_GroupEvent.class);
-                intent.putExtra("Event",EventName);
+                Intent intent = new Intent(Event_ShowStudentScanActivity_Induvidual.this, Event_StudentList_GroupEvent.class);
+                intent.putExtra("Event", EventName);
                 startActivity(intent);
 
             }
@@ -68,14 +69,14 @@ public class Event_ShowStudentScanActivity_Induvidual extends AppCompatActivity 
             @Override
             public void onClick(View view) {
 
-                String entry=manualCode.getText().toString();
-                if(entry.matches("^ARHN\\d{4}")){
+                String entry = manualCode.getText().toString();
+                if (entry.matches("^ARHN\\d{4}")) {
                     Intent intent = new Intent(Event_ShowStudentScanActivity_Induvidual.this, Event_ShowStudent_Induviudal.class);
-                    intent.putExtra("EventName",EventName);
-                    intent.putExtra("ArhnId",entry);
+                    intent.putExtra("EventName", EventName);
+                    intent.putExtra("ArhnId", entry);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(getApplicationContext(),"Invalid ID",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid ID", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -83,21 +84,19 @@ public class Event_ShowStudentScanActivity_Induvidual extends AppCompatActivity 
         });
 
 
-
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
-            if(data != null){
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
                 final Barcode barcode = data.getParcelableExtra("barcode");
                 result.post(new Runnable() {
                     @Override
                     public void run() {
                         Intent intent = new Intent(Event_ShowStudentScanActivity_Induvidual.this, Event_ShowStudent_GroupEvent.class);
-                        intent.putExtra("EventName",EventName);
-                        intent.putExtra("ArhnId",barcode.displayValue);
+                        intent.putExtra("EventName", EventName);
+                        intent.putExtra("ArhnId", barcode.displayValue);
                         startActivity(intent);
 
                     }
