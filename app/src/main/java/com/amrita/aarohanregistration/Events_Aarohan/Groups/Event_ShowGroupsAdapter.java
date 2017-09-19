@@ -63,7 +63,6 @@ public class Event_ShowGroupsAdapter extends RecyclerView.Adapter<Event_ShowGrou
         final Event_Student_Group_Count group = grpsList.get(position);
         holder.title.setText(group.getStdName());
         int a= group.getCount();
-        Toast.makeText(mContext,""+a,Toast.LENGTH_SHORT).show();
 
 
         if(a<count){

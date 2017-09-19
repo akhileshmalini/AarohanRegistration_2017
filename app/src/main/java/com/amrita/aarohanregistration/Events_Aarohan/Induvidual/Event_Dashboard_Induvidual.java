@@ -20,9 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Event_Dashboard_Induvidual extends AppCompatActivity {
 
     String EventName,cate,grpCount,groupno,groupName;
-    Button addStd,viewGrps,studList,scanView,winners,status;
+    Button btn_addStd,btn_viewGrps,btn_studList,btn_scanView,btn_evWinners,btn_setStatus;
     FirebaseDatabase database;
-    TextView e,c,gr;
+    TextView txt_evName,txt_Category;
 
 
 
@@ -31,23 +31,36 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_dashboard_inuvidual);
         database= FirebaseDatabase.getInstance();
-
-        e= (TextView) findViewById(R.id.dashTitle);
-        c= (TextView) findViewById(R.id.dashCat);
-        gr= (TextView) findViewById(R.id.dashGrp);
+        
+        //Get intent Extras
         EventName =getIntent().getExtras().getString("EventName");
         cate=getIntent().getExtras().getString("Category");
 
-        e.setText(EventName);
-        c.setText(cate+" Category");
+
+        //View Bindings
+        txt_evName= (TextView) findViewById(R.id.dashTitle);
+        txt_Category= (TextView) findViewById(R.id.dashCat);
+        btn_addStd= (Button) findViewById(R.id.button9);
+        btn_studList= (Button) findViewById(R.id.button11);
+        btn_scanView= (Button) findViewById(R.id.button13);
+        btn_setStatus= (Button) findViewById(R.id.button17);
+        btn_evWinners= (Button) findViewById(R.id.button12);
+
+
+        //Set Event Title and Category
+        txt_evName.setText(EventName);
+        txt_Category.setText(cate+" Category");
 
 
 
-
-        addStd= (Button) findViewById(R.id.button9);
-        addStd.setOnClickListener(new View.OnClickListener() {
+        //Button To Add Student to Event
+        btn_addStd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
+                * Intent Extras rquired
+                * EventName
+                * */
                 Intent intent =new Intent(getApplicationContext(),Event_StudentScanActivity_Induvidual.class);
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
@@ -56,12 +69,14 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
 
 
 
-
-        studList= (Button) findViewById(R.id.button11);
-        studList.setOnClickListener(new View.OnClickListener() {
+        //Button to Display List of Student
+        btn_studList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                /*
+                * Intent Extras rquired
+                * EventName
+                * */
                 Intent intent =new Intent(Event_Dashboard_Induvidual.this,Event_StudentList_Induvidual.class);
                 intent.putExtra("Event",EventName);
                 startActivity(intent);
@@ -69,34 +84,43 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
             }
         });
 
-
-        scanView= (Button) findViewById(R.id.button13);
-        scanView.setOnClickListener(new View.OnClickListener() {
+        //Button to Scan and View a Student
+        btn_scanView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                 /*
+                * Intent Extras rquired
+                * EventName
+                * */
                 Intent intent=new Intent(Event_Dashboard_Induvidual.this,Event_ShowStudentScanActivity_Group.class);
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
             }
         });
 
-        status= (Button) findViewById(R.id.button17);
-        status.setOnClickListener(new View.OnClickListener() {
+        //Button to Set Status of Event
+        btn_setStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                 /*
+                * Intent Extras rquired
+                * EventName
+                * */
                 Intent intent =new Intent(Event_Dashboard_Induvidual.this,Event_Status.class);
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
             }
         });
 
-        winners= (Button) findViewById(R.id.button12);
 
-        winners.setOnClickListener(new View.OnClickListener() {
+        //Button to set Winners of Event
+        btn_evWinners.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
+                * Intent Extras rquired
+                * EventName
+                * */
                 Intent intent=new Intent(Event_Dashboard_Induvidual.this,Event_Winnner_Induvidual.class);
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
