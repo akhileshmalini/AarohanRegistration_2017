@@ -71,7 +71,6 @@ public class Event_ViewGroups extends AppCompatActivity implements SearchView.On
         temp =new ArrayList<>();
 
         DatabaseReference EventsRef = database.getReference("Events").child(evName).child("Groups");
-
         //Constantly Monitor the List of Students in Firebase.
             ValueEventListener postListener = new ValueEventListener() {
             @Override
