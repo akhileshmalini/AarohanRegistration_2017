@@ -4,101 +4,114 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="com.amrita.aarohanregistration.Events_Aarohan.Groups.Event_StudentScanActivity_GroupEvent">
 
-    <Button
-        android:id="@+id/scanbtn"
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:background="@color/colorPrimary"
-        android:text="SCAN QR CODE"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
-        android:layout_below="@+id/textTitle"
-        android:layout_toRightOf="@+id/result"
-        android:layout_toEndOf="@+id/result" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="OR"
-        android:layout_marginTop="38dp"
-        android:layout_below="@+id/scanbtn"
-        android:layout_centerHorizontal="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView5"
-        android:textSize="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        android:text="Enter Manually" />
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="TextView"
+                android:textSize="30dp"
+                android:textStyle="bold|italic" />
 
-    <EditText
-        android:id="@+id/editArhnID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView7"
-        android:layout_marginTop="37dp"
-        android:ems="10"
-        android:textSize="25dp"
-        android:hint="ARHNXXXX"
-        android:textAlignment="center"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:text="Enter Student"
-        android:padding="10dp"
-        android:layout_below="@+id/editArhnID"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7"
-        android:layout_marginTop="14dp" />
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="30dp"
-        android:textStyle="bold|italic"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+            <Button
+                android:id="@+id/scanbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorPrimary"
+                android:text="SCAN QR CODE"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Student List"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/result"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/scanbtn"
+                android:layout_gravity="center"
+                android:layout_marginTop="38dp"
+                android:text="OR"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView5"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="27dp"
+                android:text="Enter Manually"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/editArhnID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_below="@+id/textView7"
+                android:layout_marginTop="37dp"
+                android:ems="10"
+                android:hint="ARHNXXXX"
+                android:textAlignment="center"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView7"
+                android:layout_alignStart="@+id/textView7"
+                android:layout_below="@+id/editArhnID"
+                android:layout_marginTop="14dp"
+                android:layout_gravity="center"
+
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                android:text="Enter Student"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:background="@color/colorPrimary"
+                android:text="View Student List"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

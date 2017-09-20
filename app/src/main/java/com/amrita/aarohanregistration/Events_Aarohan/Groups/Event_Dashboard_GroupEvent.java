@@ -118,6 +118,9 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
                  */
 
                 Intent intent = new Intent(getApplicationContext(), Event_GroupDashboard.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("groupName",groupName);
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
@@ -133,6 +136,9 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
                         *EventName
                     */
                 Intent intent = new Intent(getApplicationContext(), Event_ViewGroups.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("Event", EventName);
                 intent.putExtra("GroupSize", "" + grpCount);
                 startActivity(intent);
@@ -148,6 +154,9 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
                         *EventName
                     */
                 Intent intent = new Intent(Event_Dashboard_GroupEvent.this, Event_StudentList_GroupEvent.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("Event", EventName);
                 startActivity(intent);
 
@@ -163,6 +172,9 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
                         *EventName
                     */
                 Intent intent = new Intent(Event_Dashboard_GroupEvent.this, Event_Status.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("EventName", EventName);
                 startActivity(intent);
             }
@@ -177,6 +189,9 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
                         *EventName
                     */
                 Intent intent = new Intent(Event_Dashboard_GroupEvent.this, Event_ShowStudentScanActivity_Group.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("EventName", EventName);
                 startActivity(intent);
             }
@@ -190,6 +205,9 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
                         *EventName
                     */
                 Intent intent = new Intent(Event_Dashboard_GroupEvent.this, Event_Winnner_GroupEvent.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("EventName", EventName);
                 startActivity(intent);
             }

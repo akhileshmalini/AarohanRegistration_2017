@@ -55,6 +55,9 @@ public class FacultyProfile extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", Phone, null));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 startActivity(intent);
             }
         });

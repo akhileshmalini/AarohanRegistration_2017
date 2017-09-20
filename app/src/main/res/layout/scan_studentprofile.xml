@@ -26,6 +26,7 @@
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
+        android:textAlignment="center"
         android:text="Student Allowed or Not"
         android:textSize="20sp" />
 
@@ -34,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="200dp">
+        android:layout_marginTop="220dp">
 
         <LinearLayout
             android:layout_width="match_parent"

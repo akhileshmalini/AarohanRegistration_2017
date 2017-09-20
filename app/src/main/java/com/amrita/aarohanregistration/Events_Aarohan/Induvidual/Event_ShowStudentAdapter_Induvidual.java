@@ -67,6 +67,9 @@ public class Event_ShowStudentAdapter_Induvidual extends RecyclerView.Adapter<Ev
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(mContext,Event_ShowStudent_Induviudal.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("ArhnId",event.getStdName());
                 intent.putExtra("EventName",EventName);
                 mContext.startActivity(intent);

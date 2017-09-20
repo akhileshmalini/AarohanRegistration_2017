@@ -69,6 +69,9 @@ public class Event_ShowWinnerGroupsAdapter extends RecyclerView.Adapter<Event_Sh
             public void onClick(View view) {
 
                 Intent intent =new Intent(mContext,Event_GroupDashboard.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("groupName",group.getGrp());
                 intent.putExtra("EventName",Eventname);
                 mContext.startActivity(intent);

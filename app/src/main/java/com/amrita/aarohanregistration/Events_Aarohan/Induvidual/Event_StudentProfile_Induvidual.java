@@ -121,6 +121,9 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
                             studentsRef.child("EventsAttended").child(EventName).removeValue();
                             Toast.makeText(getApplicationContext(),"Student Successfully Removed",Toast.LENGTH_SHORT).show();
                             Intent intent =new Intent(Event_StudentProfile_Induvidual.this,Event_StudentScanActivity_Induvidual.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                             intent.putExtra("EventName",EventName);
                             startActivity(intent);
                             finish();
@@ -143,6 +146,9 @@ public class Event_StudentProfile_Induvidual extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(getApplicationContext(),Event_StudentScanActivity_Induvidual.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
                 finish();

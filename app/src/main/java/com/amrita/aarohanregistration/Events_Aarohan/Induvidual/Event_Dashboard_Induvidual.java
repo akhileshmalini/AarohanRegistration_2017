@@ -63,6 +63,9 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
                 * */
                 Intent intent =new Intent(getApplicationContext(),Event_StudentScanActivity_Induvidual.class);
                 intent.putExtra("EventName",EventName);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 startActivity(intent);
             }
         });
@@ -79,6 +82,9 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
                 * */
                 Intent intent =new Intent(Event_Dashboard_Induvidual.this,Event_StudentList_Induvidual.class);
                 intent.putExtra("Event",EventName);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 startActivity(intent);
 
             }
@@ -93,6 +99,9 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
                 * EventName
                 * */
                 Intent intent=new Intent(Event_Dashboard_Induvidual.this,Event_ShowStudentScanActivity_Group.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
             }
@@ -107,6 +116,9 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
                 * EventName
                 * */
                 Intent intent =new Intent(Event_Dashboard_Induvidual.this,Event_Status.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
             }
@@ -122,6 +134,9 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
                 * EventName
                 * */
                 Intent intent=new Intent(Event_Dashboard_Induvidual.this,Event_Winnner_Induvidual.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("EventName",EventName);
                 startActivity(intent);
             }

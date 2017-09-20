@@ -30,6 +30,9 @@ public class Event_JuniorSeniorSelect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Event_JuniorSeniorSelect.this,Event_List_Junior.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 startActivity(intent);
 
             }
@@ -39,6 +42,9 @@ public class Event_JuniorSeniorSelect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Event_JuniorSeniorSelect.this,Event_List_Senior.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 startActivity(intent);
 
             }

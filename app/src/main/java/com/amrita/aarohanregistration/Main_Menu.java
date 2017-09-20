@@ -35,8 +35,8 @@ public class Main_Menu extends AppCompatActivity {
 
         recyclerView= (RecyclerView) findViewById(R.id.recycler_view2);
 
-        int imga[] = {R.drawable.bgevent,R.drawable.bgfeedback,R.drawable.bgvisual,R.drawable.students};
-        String names[] ={"Events", "Feedback","Statistics","Fetch Student Details"};
+        int imga[] = {R.drawable.lsevents,R.drawable.lsfeedback,R.drawable.lsstatistics,R.drawable.lsstddetails};
+        String names[] ={"", "","",""};
          ArrayList<MainMenuItems> items =new ArrayList<>();
 
         for(int i=0;i<imga.length;i++){

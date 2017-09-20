@@ -2,10 +2,14 @@ package com.amrita.aarohanregistration.Events_Aarohan.Induvidual;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,14 +29,16 @@ import java.util.ArrayList;
  * Created by Akhilesh on 9/10/2017.
  */
 
-public class Event_StudentList_Induvidual extends AppCompatActivity {
+public class Event_StudentList_Induvidual extends AppCompatActivity implements SearchView.OnQueryTextListener {
     TextView evTtitle;
     ProgressBar progressBar;
     RecyclerView recyclerView;
     Event_ShowStudentAdapter_Induvidual mAdapter;
     FirebaseDatabase database;
     ArrayList<Event_Student_Group> stdList;
+    ArrayList<Event_Student_Group> original,temp;
     String evName;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +83,8 @@ public class Event_StudentList_Induvidual extends AppCompatActivity {
                         progressBar.setVisibility(View.INVISIBLE);
 
                     }
+                    original.addAll(stdList);
+
                 }
             }
 
@@ -103,5 +111,86 @@ public class Event_StudentList_Induvidual extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(this);
+
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+
+
+
+
+        if(query.equals("")){
+            stdList.clear();
+            stdList.addAll(original);
+            mAdapter.notifyDataSetChanged();
+
+        }else {
+            temp.clear();
+            for (Event_Student_Group student : stdList) {
+                if (student.getStdName().toLowerCase().contains(query.toLowerCase())) {
+                    temp.add(student);
+                }
+            }
+            if (temp.size() == 0) {
+                stdList.clear();
+
+                stdList.addAll(original);
+                mAdapter.notifyDataSetChanged();
+
+            } else {
+                stdList.clear();
+                stdList.addAll(temp);
+                mAdapter.notifyDataSetChanged();
+            }
+
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+        if(query.equals("")){
+            stdList.clear();
+            stdList.addAll(original);
+            mAdapter.notifyDataSetChanged();
+        }else {
+            temp.clear();
+
+            for (Event_Student_Group student : stdList) {
+                if (student.getStdName().toLowerCase().contains(query.toLowerCase())) {
+                    temp.add(student);
+                }
+            }
+            if (temp.size() == 0) {
+                stdList.clear();
+
+                Toast.makeText(getApplicationContext(), "No School Found", Toast.LENGTH_SHORT).show();
+                stdList.addAll(original);
+                mAdapter.notifyDataSetChanged();
+
+            } else {
+                stdList.clear();
+                stdList.addAll(temp);
+                mAdapter.notifyDataSetChanged();
+            }
+
+        }
+
+        return true;
+    }
+
 
 }

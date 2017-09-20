@@ -10,6 +10,7 @@
 
     <application
         android:allowBackup="true"
+        android:name="android.support.multidex.MultiDexApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -25,13 +26,13 @@
         <activity android:name=".Events_Aarohan.Groups.Event_StudentProfile_GroupEvent"></activity>
         <activity android:name=".Events_Aarohan.Groups.Event_StudentScanActivity_GroupEvent"></activity>
         <activity android:name=".Events_Aarohan.Event_List_Junior"></activity>
-        <activity android:name=".FeedbackStudentProfile"></activity>
-        <activity android:name=".Stats_Home"></activity>
-        <activity android:name=".FeedbackScanActivity"></activity>
-        <activity android:name=".Student_Statistics"></activity>
-        <activity android:name=".Statistics_Event"></activity>
-        <activity android:name=".School_Statistics"></activity>
-        <activity android:name=".Feedback_Statistics"></activity>
+        <activity android:name=".Feedback_Aarohan.FeedbackStudentProfile"></activity>
+        <activity android:name=".Statistics_Aarohan.Statistics_Home"></activity>
+        <activity android:name=".Feedback_Aarohan.FeedbackScanActivity"></activity>
+        <activity android:name=".Statistics_Aarohan.StudentStats.Statistics_Students"></activity>
+        <activity android:name=".Statistics_Aarohan.EventStats.Statistics_Event"></activity>
+        <activity android:name=".Statistics_Aarohan.SchoolStats.Statistics_School"></activity>
+        <activity android:name=".Statistics_Aarohan.FeedbackStats.Statistics_Feedback"></activity>
         <activity android:name=".ShowStudent"></activity>
         <activity android:name=".RandomStudentScanActivity"></activity>
         <activity android:name=".FacultyProfile"></activity>
@@ -73,11 +74,11 @@
         <activity android:name=".Events_Aarohan.Induvidual.Event_Winnner_Induvidual"></activity>
         <activity android:name=".Events_Aarohan.Event_JuniorSeniorSelect"></activity>
         <activity android:name=".Events_Aarohan.Event_List_Senior"></activity>
-        <activity android:name=".Winner_EventsList"></activity>
-        <activity android:name=".Wnner_SchoolsList"></activity>
-        <activity android:name=".Winner_GroupList"></activity>
+        <activity android:name=".Statistics_Aarohan.WinnerStats.Winner_EventsList"></activity>
+        <activity android:name=".Statistics_Aarohan.WinnerStats.Statistics_WinnerSchools"></activity>
+        <activity android:name=".Statistics_Aarohan.WinnerStats.Winner_GroupList"></activity>
         <activity android:name=".Events_Aarohan.Event_Status"></activity>
-        <activity android:name=".Events_Aarohan.Event_StatusList"></activity>
+        <activity android:name=".Statistics_Aarohan.EventStats.Statistics_EventStatus"></activity>
 
 
     </application>

@@ -69,6 +69,9 @@ public class Event_ShowWinnerInduvidualsAdapter extends RecyclerView.Adapter<Eve
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, Event_ShowStudent_Induviudal.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("EventName", Eventname);
                 intent.putExtra("ArhnId", group.getGrp());
                 mContext.startActivity(intent);

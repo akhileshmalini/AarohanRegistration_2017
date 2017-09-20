@@ -32,8 +32,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:textStyle="bold|italic"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:textSize="30dp"
         android:text="Choose Category" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_senior"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:text="Choose Relevant Category" />
 </RelativeLayout>

@@ -61,6 +61,9 @@ public class Random_ShowStudentAdapter extends RecyclerView.Adapter<Random_ShowS
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, ShowStudent.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("ArhnId",event.getStdName());
                 mContext.startActivity(intent);
 

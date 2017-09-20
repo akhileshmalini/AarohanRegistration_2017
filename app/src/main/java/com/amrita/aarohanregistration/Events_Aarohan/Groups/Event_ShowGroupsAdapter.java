@@ -83,6 +83,9 @@ public class Event_ShowGroupsAdapter extends RecyclerView.Adapter<Event_ShowGrou
             public void onClick(View view) {
 
                 Intent intent =new Intent(mContext,Event_GroupDashboard.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("groupName",group.getStdName());
                 intent.putExtra("EventName",Eventname);
                 mContext.startActivity(intent);

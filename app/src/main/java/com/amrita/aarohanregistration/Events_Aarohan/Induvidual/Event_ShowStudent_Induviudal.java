@@ -103,6 +103,9 @@ public class Event_ShowStudent_Induviudal extends AppCompatActivity {
                             * Email
                             * */
                             Intent intent = new Intent(Event_ShowStudent_Induviudal.this, FacultyProfile.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                             intent.putExtra("Name", Name);
                             intent.putExtra("Phone", Phone);
                             intent.putExtra("Email", Email);
@@ -149,6 +152,9 @@ public class Event_ShowStudent_Induviudal extends AppCompatActivity {
                             * */
                             Toast.makeText(getApplicationContext(), "Student Successfully Removed", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Event_ShowStudent_Induviudal.this, Event_StudentList_Induvidual.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                             intent.putExtra("Event", EventName);
                             startActivity(intent);
                             finish();
@@ -224,6 +230,9 @@ public class Event_ShowStudent_Induviudal extends AppCompatActivity {
                     //No Such Student exists
                     Toast.makeText(getApplicationContext(), "Invalid ID", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Event_ShowStudent_Induviudal.this, RandomStudentScanActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                     startActivity(intent);
                     finish();
                 }

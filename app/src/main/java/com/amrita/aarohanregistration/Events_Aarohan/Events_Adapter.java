@@ -81,6 +81,9 @@ public class Events_Adapter extends RecyclerView.Adapter<Events_Adapter.MyViewHo
 //                        final String password = editText.getText().toString();
 //                        if (password.equals(pwd)){
 //                            Intent intent =new Intent(mContext,Event_Dashboard_GroupEvent.class);
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
 //                            intent.putExtra("EventName",event.getEventName());
 //                            intent.putExtra("Category",event.getCategory());
 //                            mContext.startActivity(intent);
@@ -99,11 +102,17 @@ public class Events_Adapter extends RecyclerView.Adapter<Events_Adapter.MyViewHo
 
                 if(event.getGrpCount()==1){
                     Intent intent =new Intent(mContext,Event_Dashboard_Induvidual.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                     intent.putExtra("EventName",event.getEventName());
                     intent.putExtra("Category",event.getCategory());
                     mContext.startActivity(intent);
                 }else{
                     Intent intent =new Intent(mContext,Event_Dashboard_GroupEvent.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                     intent.putExtra("EventName",event.getEventName());
                     intent.putExtra("Category",event.getCategory());
                     mContext.startActivity(intent);

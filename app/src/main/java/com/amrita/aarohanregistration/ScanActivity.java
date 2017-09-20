@@ -98,6 +98,9 @@ public class ScanActivity extends AppCompatActivity {
                 if(barcodes.size() > 0){
                     System.out.println("Hello!");
                     Intent intent = new Intent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                     intent.putExtra("barcode", barcodes.valueAt(0));
                     setResult(RESULT_OK, intent);
                     finish();

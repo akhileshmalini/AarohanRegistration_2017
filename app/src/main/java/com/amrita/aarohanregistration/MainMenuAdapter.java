@@ -10,6 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amrita.aarohanregistration.Events_Aarohan.Event_JuniorSeniorSelect;
+import com.amrita.aarohanregistration.Feedback_Aarohan.FeedbackScanActivity;
+import com.amrita.aarohanregistration.Statistics_Aarohan.Statistics_Home;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -53,9 +57,10 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final MainMenuItems event = menuList.get(position);
         holder.title.setText(event.getTitle());
-        holder.imgs.setImageResource(event.getImg());
-
-
+        Glide.with(mContext).load(event.getImg())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .centerCrop()
+                .into(holder.imgs);
 
 
 
@@ -66,21 +71,33 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
 
             if(position==0){
                 Intent intent =new Intent( mContext,Event_JuniorSeniorSelect.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 mContext.startActivity(intent);
 
 
 
             }else if (position==1){
                 Intent intent =new Intent( mContext,FeedbackScanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 mContext.startActivity(intent);
 
             }else if (position==2){
 
-                Intent intent =new Intent( mContext,Stats_Home.class);
+                Intent intent =new Intent( mContext,Statistics_Home.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 mContext.startActivity(intent);
             }else if (position==3){
 
                 Intent intent =new Intent( mContext,RandomStudentScanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 mContext.startActivity(intent);
             }
 

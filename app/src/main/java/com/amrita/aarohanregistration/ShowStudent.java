@@ -1,10 +1,10 @@
 package com.amrita.aarohanregistration;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.amrita.aarohanregistration.Feedback_Aarohan.FeedBackEvent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +30,7 @@ import java.util.ArrayList;
 public class ShowStudent extends AppCompatActivity {
     TextView arhnIdtxt,name,school,gender,category,p,a,b,c,d,e;
     FirebaseDatabase database;
+    CardView card;
     String arhnID;
     ShowStudentAdapter mAdapter;
     ProgressBar progressBar;
@@ -44,20 +44,27 @@ public class ShowStudent extends AppCompatActivity {
         arhnID=getIntent().getExtras().getString("ArhnId");
 
         database= FirebaseDatabase.getInstance();
-        arhnIdtxt = (TextView) findViewById(R.id.txt_id);
-        name = (TextView) findViewById(R.id.txt_name);
-        school = (TextView) findViewById(R.id.txt_school);
-        gender = (TextView) findViewById(R.id.txt_gender);
-        category = (TextView) findViewById(R.id.txt_category);
+        arhnIdtxt = (TextView) findViewById(R.id.textView27);
+        name = (TextView) findViewById(R.id.textView22);
+        school = (TextView) findViewById(R.id.textView31);
+        gender = (TextView) findViewById(R.id.textView35);
+        category = (TextView) findViewById(R.id.textView33);
         progressBar= (ProgressBar) findViewById(R.id.progressBar2);
-        p= (TextView) findViewById(R.id.textView13);
-        a= (TextView) findViewById(R.id.textView4);
-        b= (TextView) findViewById(R.id.textView6);
-        c= (TextView) findViewById(R.id.textView8);
-        d= (TextView) findViewById(R.id.textView10);
-        e= (TextView) findViewById(R.id.textView12);
-
         fac= (Button) findViewById(R.id.button5);
+        card= (CardView) findViewById(R.id.card_view);
+        //Unused
+        a = (TextView) findViewById(R.id.textView21);
+        b = (TextView) findViewById(R.id.textView26);
+        c = (TextView) findViewById(R.id.textView34);
+        d = (TextView) findViewById(R.id.textView30);
+        e = (TextView) findViewById(R.id.textView32);
+
+        p = (TextView) findViewById(R.id.textView13);
+
+
+
+
+
 
         fac.setVisibility(View.INVISIBLE);
 
@@ -84,6 +91,9 @@ public class ShowStudent extends AppCompatActivity {
                             String Phone= ""+f.getPhoneno();
                             String Name =f.getName();
                             Intent intent =new Intent(ShowStudent.this,FacultyProfile.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                             intent.putExtra("Name",Name);
                             intent.putExtra("Phone",Phone);
                             intent.putExtra("Email",Email);
@@ -116,6 +126,8 @@ public class ShowStudent extends AppCompatActivity {
         c.setVisibility(View.VISIBLE);
         d.setVisibility(View.VISIBLE);
         e.setVisibility(View.VISIBLE);
+        card.setVisibility(View.VISIBLE);
+        p.setVisibility(View.VISIBLE);
 
 
     }
@@ -132,7 +144,10 @@ public class ShowStudent extends AppCompatActivity {
         c.setVisibility(View.INVISIBLE);
         d.setVisibility(View.INVISIBLE);
         e.setVisibility(View.INVISIBLE);
+        card.setVisibility(View.INVISIBLE);
         p.setVisibility(View.INVISIBLE);
+
+
 
     }
 
@@ -162,6 +177,9 @@ public class ShowStudent extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(),"Invalid ID", Toast.LENGTH_LONG).show();
                     Intent intent =new Intent(ShowStudent.this,RandomStudentScanActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                     startActivity(intent);
 
                 }
@@ -192,7 +210,6 @@ public class ShowStudent extends AppCompatActivity {
                         mAdapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.INVISIBLE);
                         showContent();
-                        p.setVisibility(View.VISIBLE);
 
                     }
                 }

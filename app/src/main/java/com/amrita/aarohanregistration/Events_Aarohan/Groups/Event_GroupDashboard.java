@@ -124,6 +124,9 @@ public class Event_GroupDashboard extends AppCompatActivity {
                                 *EventName
                              */
                             Intent intent = new Intent(getApplicationContext(), Event_StudentScanActivity_GroupEvent.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                             intent.putExtra("groupName", groupName);
                             intent.putExtra("EventName", EventName);
                             startActivity(intent);

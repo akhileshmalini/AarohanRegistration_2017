@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.amrita.aarohanregistration.R;
 import com.google.firebase.database.DataSnapshot;
@@ -27,11 +28,16 @@ public class Event_List_Senior extends AppCompatActivity {
     FirebaseDatabase database;
     Events_Adapter mAdapter;
     ProgressBar progressBar;
-
+    TextView title;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        title= (TextView) findViewById(R.id.txtTitle);
+        title.setText("Senior Category");
+
+
         progressBar= (ProgressBar) findViewById(R.id.progressBar3);
         database= FirebaseDatabase.getInstance();
         final ArrayList<Events> evList =new ArrayList<>();

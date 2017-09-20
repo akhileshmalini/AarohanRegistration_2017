@@ -58,6 +58,9 @@ public class Event_ShowStudentAdapter extends RecyclerView.Adapter<Event_ShowStu
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(mContext,Event_ShowStudent_GroupEvent.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("ArhnId",event.getStdName());
                 intent.putExtra("EventName",EventName);
                 mContext.startActivity(intent);

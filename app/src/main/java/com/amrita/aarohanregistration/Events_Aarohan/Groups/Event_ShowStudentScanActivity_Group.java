@@ -48,6 +48,9 @@ public class Event_ShowStudentScanActivity_Group extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Event_ShowStudentScanActivity_Group.this, ScanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -56,6 +59,9 @@ public class Event_ShowStudentScanActivity_Group extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent =new Intent(Event_ShowStudentScanActivity_Group.this,Event_StudentList_GroupEvent.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("Event",EventName);
                 startActivity(intent);
 
@@ -69,6 +75,9 @@ public class Event_ShowStudentScanActivity_Group extends AppCompatActivity {
                 String entry=manualCode.getText().toString();
                 if(entry.matches("^ARHN\\d{4}")){
                     Intent intent = new Intent(Event_ShowStudentScanActivity_Group.this, Event_ShowStudent_GroupEvent.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                     intent.putExtra("EventName",EventName);
                     intent.putExtra("ArhnId",entry);
                     startActivity(intent);
@@ -94,6 +103,9 @@ public class Event_ShowStudentScanActivity_Group extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(Event_ShowStudentScanActivity_Group.this, Event_ShowStudent_GroupEvent.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                         intent.putExtra("EventName",EventName);
                         intent.putExtra("ArhnId",barcode.displayValue);
                         startActivity(intent);

@@ -69,6 +69,9 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Event_StudentScanActivity_GroupEvent.this, ScanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -88,6 +91,9 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
                     * ID(Manual Entry Text)
                     * */
                     Intent intent = new Intent(Event_StudentScanActivity_GroupEvent.this, Event_StudentProfile_GroupEvent.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                     intent.putExtra("EventName", EventName);
                     intent.putExtra("groupName", groupName);
                     intent.putExtra("ArhnId", entry);
@@ -108,6 +114,9 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
                     * EventName
                     * */
                 Intent intent = new Intent(Event_StudentScanActivity_GroupEvent.this, Event_StudentList_GroupEvent.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("Event", EventName);
                 startActivity(intent);
 
@@ -131,6 +140,9 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
                                 * ID(QR Code Result Text)
                              * */
                         Intent intent = new Intent(Event_StudentScanActivity_GroupEvent.this, Event_StudentProfile_GroupEvent.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                         intent.putExtra("EventName", EventName);
                         intent.putExtra("groupName", groupName);
                         intent.putExtra("ArhnId", barcode.displayValue);

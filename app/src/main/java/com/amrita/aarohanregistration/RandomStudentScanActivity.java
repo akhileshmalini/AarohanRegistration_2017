@@ -45,6 +45,9 @@ public class RandomStudentScanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RandomStudentScanActivity.this, ScanActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -56,6 +59,9 @@ public class RandomStudentScanActivity extends AppCompatActivity {
                 String entry=manualCode.getText().toString();
                 if(entry.matches("^ARHN\\d{4}")){
                     Intent intent = new Intent(RandomStudentScanActivity.this, ShowStudent.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                     intent.putExtra("ArhnId",entry);
                     startActivity(intent);
                 }else{
@@ -79,6 +85,8 @@ public class RandomStudentScanActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(RandomStudentScanActivity.this, ShowStudent.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
 
 
                         intent.putExtra("ArhnId",barcode.displayValue);

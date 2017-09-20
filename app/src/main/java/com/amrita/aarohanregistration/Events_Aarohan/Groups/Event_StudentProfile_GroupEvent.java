@@ -137,6 +137,9 @@ public class Event_StudentProfile_GroupEvent extends AppCompatActivity {
                             * EventName
                             * GroupName
                             * */
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                             intent.putExtra("EventName", EventName);
                             intent.putExtra("groupName", groupName);
                             startActivity(intent);
@@ -166,6 +169,9 @@ public class Event_StudentProfile_GroupEvent extends AppCompatActivity {
                             * GroupName
                             * */
                 Intent intent = new Intent(getApplicationContext(), Event_GroupDashboard.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
                 intent.putExtra("groupName", groupName);
                 intent.putExtra("EventName", EventName);
                 startActivity(intent);
