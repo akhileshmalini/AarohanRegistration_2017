@@ -45,7 +45,6 @@ public class FeedbackScanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FeedbackScanActivity.this, ScanActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
                 startActivityForResult(intent, REQUEST_CODE);

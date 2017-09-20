@@ -48,7 +48,6 @@ public class Event_StudentScanActivity_Induvidual extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Event_StudentScanActivity_Induvidual.this, ScanActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
                 startActivityForResult(intent, REQUEST_CODE);
@@ -105,9 +104,6 @@ public class Event_StudentScanActivity_Induvidual extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(Event_StudentScanActivity_Induvidual.this, Event_StudentProfile_Induvidual.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-
                         intent.putExtra("EventName",EventName);
                         intent.putExtra("ArhnId",barcode.displayValue);
                         startActivity(intent);
