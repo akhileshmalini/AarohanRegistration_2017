@@ -9,19 +9,25 @@
 
 
     <application
-        android:allowBackup="true"
         android:name="android.support.multidex.MultiDexApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_arhnlogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main_Menu">
+
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Main_Menu"></activity>
         <activity android:name=".ScanActivity"></activity>
         <activity android:name=".Events_Aarohan.Groups.Event_StudentProfile_GroupEvent"></activity>
         <activity android:name=".Events_Aarohan.Groups.Event_StudentScanActivity_GroupEvent"></activity>
@@ -37,36 +43,35 @@
         <activity android:name=".RandomStudentScanActivity"></activity>
         <activity android:name=".FacultyProfile"></activity>
 
-        <activity android:name=".Events_Aarohan.Groups.Event_StudentList_GroupEvent"
-            android:launchMode="singleTask">
-        </activity>
+        <activity
+            android:name=".Events_Aarohan.Groups.Event_StudentList_GroupEvent"
+            android:launchMode="singleTask"></activity>
 
         <activity android:name=".SchoolStudentList"></activity>
         <activity android:name=".Events_Aarohan.Groups.Event_Dashboard_GroupEvent"></activity>
 
-        <activity android:name=".Events_Aarohan.Groups.Event_GroupDashboard"
-            android:launchMode="singleTask">
-        </activity>
+        <activity
+            android:name=".Events_Aarohan.Groups.Event_GroupDashboard"
+            android:launchMode="singleTask"></activity>
 
         <activity android:name=".Events_Aarohan.Groups.Event_ViewGroups"></activity>
         <activity android:name=".Events_Aarohan.Groups.Event_Winnner_GroupEvent"></activity>
 
 
+        <activity
+            android:name=".Events_Aarohan.Groups.Event_ShowStudent_GroupEvent"
+            android:launchMode="singleInstance"></activity>
+        <activity
+            android:name=".Events_Aarohan.Groups.Event_ShowStudentScanActivity_Group"
+            android:launchMode="singleInstance"></activity>
 
-        <activity android:name=".Events_Aarohan.Groups.Event_ShowStudent_GroupEvent"
-            android:launchMode= "singleInstance">
-        </activity>
-        <activity android:name=".Events_Aarohan.Groups.Event_ShowStudentScanActivity_Group"
-            android:launchMode= "singleInstance" >
-        </activity>
+        <activity
+            android:name=".Events_Aarohan.Induvidual.Event_StudentScanActivity_Induvidual"
+            android:launchMode="singleInstance"></activity>
 
-        <activity android:name=".Events_Aarohan.Induvidual.Event_StudentScanActivity_Induvidual"
-            android:launchMode= "singleInstance" >
-        </activity>
-
-        <activity android:name=".Events_Aarohan.Induvidual.Event_StudentList_Induvidual"
-            android:launchMode= "singleInstance" >
-        </activity>
+        <activity
+            android:name=".Events_Aarohan.Induvidual.Event_StudentList_Induvidual"
+            android:launchMode="singleInstance"></activity>
 
         <activity android:name=".Events_Aarohan.Induvidual.Event_Dashboard_Induvidual"></activity>
         <activity android:name=".Events_Aarohan.Induvidual.Event_ShowStudent_Induviudal"></activity>
@@ -82,7 +87,6 @@
 
 
     </application>
-
 
 
 </manifest>

@@ -59,6 +59,9 @@ public class Event_StudentList_Induvidual extends AppCompatActivity implements S
 
         //Initialize ArrayList
         stdList = new ArrayList<>();
+        original = new ArrayList<>();
+        temp = new ArrayList<>();
+
 
         refreshList();
     }
