@@ -43,7 +43,7 @@ public class Main_Menu extends AppCompatActivity {
             items.add(new MainMenuItems(names[i],imga[i]));
         }
 
-        MainMenuAdapter mAdapter = new MainMenuAdapter(items,getApplicationContext());
+        MainMenuAdapter mAdapter = new MainMenuAdapter(items,getApplicationContext(),Main_Menu.this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -54,6 +54,10 @@ public class Main_Menu extends AppCompatActivity {
 
 
     }
+
+
+
+
 }
 
 

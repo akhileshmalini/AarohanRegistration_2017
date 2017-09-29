@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amrita.aarohanregistration.Events_Aarohan.Event_Status;
 import com.amrita.aarohanregistration.R;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 /**
@@ -45,6 +47,7 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
     ProgressBar progressBar;
     ScrollView scrollView;
     FirebaseDatabase database;
+    DatabaseReference EventsRef;
 
 
     @Override
@@ -80,17 +83,28 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
         txt_evCategory.setText(Category + " Category");
 
 
-        /*This Firebase call is to Determine the no. of people allowed per group
+        //Was Here
+         EventsRef = database.getReference("Events").child(EventName);
+
+      /*This Firebase call is to Determine the no. of people allowed per group
         and also the value of the new group that needs to be created. */
 
-        DatabaseReference EventsRef = database.getReference("Events").child(EventName);
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String frp="";
+                for(DataSnapshot data : dataSnapshot.child("Groups").getChildren()){
+                    frp=data.getKey();
+                }
+                frp = frp.replaceAll("\\D+","");
+                int valFrp=Integer.parseInt(frp)+1;
+                Toast.makeText(getApplicationContext(),frp,Toast.LENGTH_SHORT).show();
+
                 //No. of people Allowed per group
                 grpCount = dataSnapshot.child("grpCount").getValue().toString();
+
                 //CurrentGroup number + 1
-                groupNo = "" + (dataSnapshot.child("Groups").getChildrenCount() + 1);
+                groupNo = ""+valFrp;
                 //New Group Name (Used When new group is created)
                 groupName = "GRP" + groupNo;
                 //Set GroupLimit
@@ -104,6 +118,8 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
             }
         };
         EventsRef.addValueEventListener(postListener);
+
+
 
 
         //Button to Create New Group
@@ -234,5 +250,7 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
         scrollView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
     }
+
+
 
 }

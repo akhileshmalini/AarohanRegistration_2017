@@ -1,19 +1,27 @@
 package com.amrita.aarohanregistration;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amrita.aarohanregistration.Events_Aarohan.Event_JuniorSeniorSelect;
+import com.amrita.aarohanregistration.Events_Aarohan.Groups.Event_GroupDashboard;
+import com.amrita.aarohanregistration.Events_Aarohan.Groups.Event_ShowStudent_GroupEvent;
 import com.amrita.aarohanregistration.Feedback_Aarohan.FeedbackScanActivity;
 import com.amrita.aarohanregistration.Statistics_Aarohan.Statistics_Home;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.List;
 
@@ -24,7 +32,8 @@ import java.util.List;
 public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyViewHolder> {
 
     private List<MainMenuItems> menuList;
-    Context mContext;
+    Context mContext,activityContext;
+    String passEvents,passStats;
  
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -35,15 +44,22 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
             super(view);
             title = (TextView) view.findViewById(R.id.eventName);
             imgs = (ImageView) view.findViewById(R.id.imageView2);
-            
-        }
+            }
     }
 
 
-    public MainMenuAdapter(List<MainMenuItems> menuList, Context mContext) {
+    public MainMenuAdapter(List<MainMenuItems> menuList, Context mContext, Context activityContext) {
         this.menuList = menuList;
         this.mContext=mContext;
+        this.activityContext=activityContext;
+
+
+        //Paswords
+        passEvents="events";
+        passStats="stats";
+
     }
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -70,14 +86,37 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
 
 
             if(position==0){
-                Intent intent =new Intent( mContext,Event_JuniorSeniorSelect.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+//Initialize Dialog and Request Passkey
+                final Dialog passDialog = new Dialog(activityContext, R.style.MyAlertDialogStyle);
+                passDialog.setContentView(R.layout.dialog_password);
+                passDialog.setCancelable(true);
+                final EditText editText = (EditText) passDialog.findViewById(R.id.editText);
+                TextView text = (TextView) passDialog.findViewById(R.id.rank_dialog_text1);
+                text.setText("Enter Passkey To Access Events");
+                Button updateButton = (Button) passDialog.findViewById(R.id.rank_dialog_button);
+                updateButton.setText("Enter");
+                updateButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String password = editText.getText().toString();
+
+                        if (password.equals(passEvents)) {
 
 
-                mContext.startActivity(intent);
-
-
-
+                            Intent intent =new Intent( mContext,Event_JuniorSeniorSelect.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mContext.startActivity(intent);
+                        } else {
+                            //Invalid Passkey
+                            Toast.makeText(mContext, "Invalid Passkey", Toast.LENGTH_SHORT).show();
+                        }
+                        passDialog.dismiss();
+                    }
+                });
+                passDialog.show();
+                Window window = passDialog.getWindow();
+                window.setLayout(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
             }else if (position==1){
                 Intent intent =new Intent( mContext,FeedbackScanActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -87,11 +126,36 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.MyView
 
             }else if (position==2){
 
-                Intent intent =new Intent( mContext,Statistics_Home.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                final Dialog passDialog = new Dialog(activityContext, R.style.MyAlertDialogStyle);
+                passDialog.setContentView(R.layout.dialog_password);
+                passDialog.setCancelable(true);
+                final EditText editText = (EditText) passDialog.findViewById(R.id.editText);
+                TextView text = (TextView) passDialog.findViewById(R.id.rank_dialog_text1);
+                text.setText("Enter Passkey To Access Statistics");
+                Button updateButton = (Button) passDialog.findViewById(R.id.rank_dialog_button);
+                updateButton.setText("Enter");
+                updateButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String password = editText.getText().toString();
+                        if (password.equals(passStats)) {
+                            Intent intent =new Intent( mContext,Statistics_Home.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            mContext.startActivity(intent);
+                        } else {
+                            //Invalid Passkey
+                            Toast.makeText(mContext, "Invalid Passkey", Toast.LENGTH_SHORT).show();
+                        }
+                        passDialog.dismiss();
+                    }
+                });
+                passDialog.show();
+                Window window = passDialog.getWindow();
+                window.setLayout(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
 
 
-                mContext.startActivity(intent);
+
+
             }else if (position==3){
 
                 Intent intent =new Intent( mContext,RandomStudentScanActivity.class);

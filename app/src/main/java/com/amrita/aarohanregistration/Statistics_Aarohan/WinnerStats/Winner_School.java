@@ -1,10 +1,12 @@
 package com.amrita.aarohanregistration.Statistics_Aarohan.WinnerStats;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by Akhilesh on 9/14/2017.
  */
 
-public class Winner_School {
+public class Winner_School  implements Comparable {
 
     String SchoolName;
     int points;
@@ -31,5 +33,12 @@ public class Winner_School {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        int comparePoints=((Winner_School)o).getPoints();
+        return comparePoints-this.points;
+
     }
 }

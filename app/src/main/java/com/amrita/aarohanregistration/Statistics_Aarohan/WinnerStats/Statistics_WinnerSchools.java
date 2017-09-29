@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Akhilesh on 9/14/2017.
@@ -84,11 +85,14 @@ public class Statistics_WinnerSchools extends AppCompatActivity {
                     }
 
                     schoolList.add(new Winner_School(Schools.getKey(),tot));
-                    mAdapter.notifyDataSetChanged();
-                    progressBar.setVisibility(View.INVISIBLE);
+
 
 
                 }
+
+                Collections.sort(schoolList);
+                mAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override

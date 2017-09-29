@@ -84,7 +84,6 @@ public class Event_StudentList_Induvidual extends AppCompatActivity implements S
                         stdList.add(new Event_Student_Group(event.getKey().toString()));
                         mAdapter.notifyDataSetChanged();
                         progressBar.setVisibility(View.INVISIBLE);
-
                     }
                     original.addAll(stdList);
 
@@ -107,13 +106,7 @@ public class Event_StudentList_Induvidual extends AppCompatActivity implements S
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        refreshList();
-        mAdapter.notifyDataSetChanged();
 
-    }
 
 
     @Override
@@ -129,10 +122,6 @@ public class Event_StudentList_Induvidual extends AppCompatActivity implements S
 
     @Override
     public boolean onQueryTextChange(String query) {
-
-
-
-
         if(query.equals("")){
             stdList.clear();
             stdList.addAll(original);
@@ -191,9 +180,6 @@ public class Event_StudentList_Induvidual extends AppCompatActivity implements S
             }
 
         }
-
         return true;
     }
-
-
 }
