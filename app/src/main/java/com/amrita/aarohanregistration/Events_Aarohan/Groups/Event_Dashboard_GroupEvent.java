@@ -92,13 +92,18 @@ public class Event_Dashboard_GroupEvent extends AppCompatActivity {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //This Gets the Groupno  of the last Group in the list.
                 String frp="";
                 for(DataSnapshot data : dataSnapshot.child("Groups").getChildren()){
                     frp=data.getKey();
                 }
+                //When it comes out of the loop it will have retrieved the last existing group number.
                 frp = frp.replaceAll("\\D+","");
+                if (frp.equals("")){
+                    frp="0";
+                }
                 int valFrp=Integer.parseInt(frp)+1;
-                Toast.makeText(getApplicationContext(),frp,Toast.LENGTH_SHORT).show();
 
                 //No. of people Allowed per group
                 grpCount = dataSnapshot.child("grpCount").getValue().toString();
