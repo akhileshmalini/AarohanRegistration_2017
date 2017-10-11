@@ -33,7 +33,7 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 100;
     public static final int PERMISSION_REQUEST = 200;
-    String EventName, cate, groupName;
+    String EventName, cate, groupName,groupSize;
 
 
     @Override
@@ -44,6 +44,8 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
         //Get Intent Extras
         EventName = getIntent().getExtras().getString("EventName");
         groupName = getIntent().getExtras().getString("groupName");
+        groupSize=getIntent().getExtras().getString("groupSize");
+
 
         //View Bindings
         btn_scanQR = (Button) findViewById(R.id.scanbtn);
@@ -83,6 +85,7 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
                     //Entry Matches therefore Intent to Student Profile for Group Event
                     /*
                     * Required Extras
+                    * GroupSize
                     * EventName
                     * GroupName
                     * ID(Manual Entry Text)
@@ -90,6 +93,7 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
                     Intent intent = new Intent(Event_StudentScanActivity_GroupEvent.this, Event_StudentProfile_GroupEvent.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+                    intent.putExtra("groupSize", groupSize);
 
                     intent.putExtra("EventName", EventName);
                     intent.putExtra("groupName", groupName);
@@ -132,11 +136,13 @@ public class Event_StudentScanActivity_GroupEvent extends AppCompatActivity {
                     public void run() {
                             /*
                                 * Required Extras
+                                * GroupSize
                                 * EventName
                                 * GroupName
                                 * ID(QR Code Result Text)
                              * */
                         Intent intent = new Intent(Event_StudentScanActivity_GroupEvent.this, Event_StudentProfile_GroupEvent.class);
+                        intent.putExtra("groupSize", groupSize);
                         intent.putExtra("EventName", EventName);
                         intent.putExtra("groupName", groupName);
                         intent.putExtra("ArhnId", barcode.displayValue);

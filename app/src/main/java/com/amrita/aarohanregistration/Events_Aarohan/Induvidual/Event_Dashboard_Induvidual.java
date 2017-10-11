@@ -1,15 +1,22 @@
 package com.amrita.aarohanregistration.Events_Aarohan.Induvidual;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amrita.aarohanregistration.Events_Aarohan.Event_Status;
+import com.amrita.aarohanregistration.Events_Aarohan.Groups.Event_Dashboard_GroupEvent;
 import com.amrita.aarohanregistration.Events_Aarohan.Groups.Event_ShowStudentScanActivity_Group;
+import com.amrita.aarohanregistration.Events_Aarohan.Groups.Event_Winnner_GroupEvent;
 import com.amrita.aarohanregistration.R;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -133,12 +140,38 @@ public class Event_Dashboard_Induvidual extends AppCompatActivity {
                 * Intent Extras rquired
                 * EventName
                 * */
-                Intent intent=new Intent(Event_Dashboard_Induvidual.this,Event_Winnner_Induvidual.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                final Dialog passDialog = new Dialog(Event_Dashboard_Induvidual.this, R.style.MyAlertDialogStyle);
+                passDialog.setContentView(R.layout.dialog_password);
+                passDialog.setCancelable(true);
+                final EditText editText = (EditText) passDialog.findViewById(R.id.editText);
+                TextView text = (TextView) passDialog.findViewById(R.id.rank_dialog_text1);
+                text.setText("Enter Passkey To Access Winner");
+                Button updateButton = (Button) passDialog.findViewById(R.id.rank_dialog_button);
+                updateButton.setText("Enter");
+                updateButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String password = editText.getText().toString();
+                        if (password.equals("winner")) {
+
+                            Intent intent = new Intent(Event_Dashboard_Induvidual.this, Event_Winnner_GroupEvent.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("EventName", EventName);
+                            startActivity(intent);
+                        } else {
+                            //Invalid Passkey
+                            Toast.makeText(getApplicationContext(), "Invalid Passkey", Toast.LENGTH_SHORT).show();
+                        }
+                        passDialog.dismiss();
+                    }
+                });
+                passDialog.show();
+                Window window = passDialog.getWindow();
+                window.setLayout(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
 
 
-                intent.putExtra("EventName",EventName);
-                startActivity(intent);
+
             }
         });
 

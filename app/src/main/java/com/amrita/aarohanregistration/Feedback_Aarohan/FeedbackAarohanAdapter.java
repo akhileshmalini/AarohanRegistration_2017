@@ -94,7 +94,7 @@ public class FeedbackAarohanAdapter extends RecyclerView.Adapter<FeedbackAarohan
                 ratingBar.setRating(num);
 
                 TextView text = (TextView) rankDialog.findViewById(R.id.rank_dialog_text1);
-                text.setText(event.getEvName());
+                text.setText(event.getEvDescription());
 
                 Button updateButton = (Button) rankDialog.findViewById(R.id.rank_dialog_button);
                 updateButton.setOnClickListener(new View.OnClickListener() {

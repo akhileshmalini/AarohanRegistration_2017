@@ -99,8 +99,11 @@ public class FeedbackStudentProfile extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if(dataSnapshot.getChildrenCount()<4){
-                    for(int i=1;i<=4;i++)
-                    aarohanFeedback.add(new FeedBackEvent("Question"+i,0));
+                    aarohanFeedback.add(new FeedBackEvent("Question"+1,0,"How was Aarohan'17 ?"));
+                    aarohanFeedback.add(new FeedBackEvent("Question"+2,0,"How was your experience interacting with the Team ?"));
+                    aarohanFeedback.add(new FeedBackEvent("Question"+3,0,"How was the food and Hospitality ?"));
+                    aarohanFeedback.add(new FeedBackEvent("Question"+4,0,"How was the Registration System ?"));
+
 
                 }else{
                     int i=1;
@@ -108,7 +111,16 @@ public class FeedbackStudentProfile extends AppCompatActivity {
 
                     try {
                         float q1 = Float.valueOf(event.getValue().toString());
-                        aarohanFeedback.add(new FeedBackEvent("Question" + i, q1));
+                        if(i==1){
+                            aarohanFeedback.add(new FeedBackEvent("Question" + i, q1,"How was Aarohan'17 ?"));
+                        }else if(i==2){
+                            aarohanFeedback.add(new FeedBackEvent("Question" + i, q1,"How was your experience interacting with the Team ?"));
+                        }else if(i==3){
+                            aarohanFeedback.add(new FeedBackEvent("Question" + i, q1,"How was the food and Hospitality ?"));
+                        }else if(i==4){
+                            aarohanFeedback.add(new FeedBackEvent("Question" + i, q1,"How was the Registration System ?"));
+                        }
+
                         i += 1;
 
 

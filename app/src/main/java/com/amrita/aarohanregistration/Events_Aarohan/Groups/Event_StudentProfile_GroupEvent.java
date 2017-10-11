@@ -35,7 +35,7 @@ public class Event_StudentProfile_GroupEvent extends AppCompatActivity {
     ImageView img_status;
     TextView txt_status, txt_arhnID, txt_stdName, txt_schoolName, txt_stdGender, txt_stdCategory, txt_stdGroup, a, b, c, d, e, f;
     ProgressBar progressBar;
-    String EventName, cate, arhnID, groupName;
+    String EventName, cate, arhnID, groupName,groupSize;
     FirebaseDatabase database;
     Button btn_addNew, btn_removeStd;
     DatabaseReference categoryRef, studentsRef, eventStdRef, grpRef;
@@ -57,6 +57,8 @@ public class Event_StudentProfile_GroupEvent extends AppCompatActivity {
         arhnID = getIntent().getExtras().getString("ArhnId");
         EventName = getIntent().getExtras().getString("EventName");
         groupName = getIntent().getExtras().getString("groupName");
+        groupSize=getIntent().getExtras().getString("groupSize");
+
 
         //Get the Category of the Event in Question
         categoryRef = database.getReference("Events").child(EventName).child("Category");
@@ -267,8 +269,7 @@ public class Event_StudentProfile_GroupEvent extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.getValue() != null) {
                     //Student has Already Participated in the Event
-                    Toast.makeText(getApplicationContext(), "" + snapshot.getValue(), Toast.LENGTH_SHORT).show();
-                    getStudentDetails(21);
+                    testSize(21);
                     txt_status.setText("Student has Already been Added in this Event");
                     Glide.with(getApplicationContext()).load(R.drawable.nonots)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -277,7 +278,7 @@ public class Event_StudentProfile_GroupEvent extends AppCompatActivity {
                     showContent();
                 } else {
                     //Student hasn't Already Participated in the Event
-                    getStudentDetails(1996);
+                    testSize(1996);
                 }
 
             }
@@ -290,9 +291,45 @@ public class Event_StudentProfile_GroupEvent extends AppCompatActivity {
 
     }
 
+    void testSize(final int a){
+
+        DatabaseReference grpRef = database.getReference("Events").child(EventName).child("Groups").child(groupName);
+
+        final int gSize=Integer.parseInt(groupSize);
+        grpRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int num=(int)dataSnapshot.getChildrenCount();
+                if(num<gSize){
+                    getStudentDetails(a);
+                }else{
+
+                    txt_status.setText("Group is Full Student Cannot be Added");
+                    Glide.with(getApplicationContext()).load(R.drawable.nonots)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .centerCrop()
+                            .into(img_status);
+                    showContent();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     void getStudentDetails(final int a) {
+
+
         //Finally Test to see if Student Belongs to the Category of the Event
+
+
+
+
         final String[] ca = new String[1];
         studentsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
